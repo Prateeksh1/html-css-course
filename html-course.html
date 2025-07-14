@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Course - WebDev Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">WebDev Hub</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="courses.html" class="active">Courses</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="projects.html">Projects</a>
+            <a href="compiler.html">Compiler</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">HTML Course: The Structure of the Web</h1>
+
+        <section class="course-intro lesson-section">
+            <h2>Module 1: HTML - The Structure of the Web</h2>
+            <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a web page semantically and originally included cues for the appearance of the document.</p>
+            <p>In this comprehensive module, we will dive deep into every essential HTML element, attribute, and concept you need to build robust and accessible web content.</p>
+        </section>
+
+        <!-- NEW: Table of Contents / Course Index -->
+        <section class="lesson-section course-index">
+            <h2>Course Index</h2>
+            <nav class="index-nav">
+                <ol>
+                    <li><a href="#lesson-1-1">1.1 HTML Basics: Document Structure</a></li>
+                    <li><a href="#lesson-1-2">1.2 Head Elements: Metadata and Links</a></li>
+                    <li><a href="#lesson-1-3">1.3 Text Formatting: Headings, Paragraphs, and Emphasis</a></li>
+                    <li><a href="#lesson-1-4">1.4 Lists: Ordered, Unordered, and Description Lists</a></li>
+                    <li><a href="#lesson-1-5">1.5 Links: Navigating the Web</a></li>
+                    <li><a href="#lesson-1-6">1.6 Images: Adding Visuals</a></li>
+                    <li><a href="#lesson-1-7">1.7 Tables: Organizing Tabular Data</a></li>
+                    <li><a href="#lesson-1-8">1.8 Forms: User Input</a></li>
+                    <li><a href="#lesson-1-9">1.9 Semantic HTML5: Meaningful Structure</a></li>
+                    <li><a href="#lesson-1-10">1.10 Multimedia: Audio and Video</a></li>
+                    <li><a href="#lesson-1-11">1.11 Iframes: Embedding External Content</a></li>
+                    <li><a href="#lesson-1-12">1.12 HTML Entities: Special Characters</a></li>
+                    <li><a href="#lesson-1-13">1.13 Accessibility (A11y) Best Practices</a></li>
+                    <li><a href="#lesson-1-14">1.14 Advanced Meta Tags for SEO and Social Media</a></li>
+                    <li><a href="#lesson-1-15">1.15 Data Attributes: Custom Data for Elements</a></li>
+                </ol>
+            </nav>
+        </section>
+
+        <div class="lesson-section"> <!-- Wrap lessons in a section for consistent styling -->
+            <div class="lesson" id="lesson-1-1">
+                <h3>1.1 HTML Basics: Document Structure</h3>
+                <p>Every HTML document follows a basic structure. It starts with a doctype declaration, followed by the `<html>` root element, which contains a `<head>` and a `<body>` section.</p>
+                <ul>
+                    <li><code>&lt;!DOCTYPE html&gt;</code>: This declaration defines the document type to be HTML5. It must be the very first thing in your HTML document, before the `<html>` tag.</li>
+                    <li><code>&lt;html lang="en"&gt;</code>: This is the root element of an HTML page. The `lang="en"` attribute specifies the language of the document as English, which is important for accessibility (screen readers) and search engines.</li>
+                    <li><code>&lt;head&gt;</code>: This element contains meta-information about the HTML document. Content inside `<head>` is not visible on the page itself but provides crucial information to browsers, search engines, and other web services.</li>
+                    <li><code>&lt;body&gt;</code>: This element contains all the visible contents of an HTML document, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First HTML Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, Web!&lt;/h1&gt;
+    &lt;p&gt;This is my very first paragraph on the internet.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-basic-structure', '&lt;h1&gt;Hello, Web!&lt;/h1&gt;&lt;p&gt;This is my very first paragraph on the internet.&lt;/p&gt;')">Try It Yourself</button>
+                    <iframe id="html-basic-structure-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-2">
+                <h3>1.2 Head Elements: Metadata and Links</h3>
+                <p>The `<head>` section provides essential information about the page. This information is not displayed to the user but is crucial for browsers, search engines, and social media sharing.</p>
+                <ul>
+                    <li><code>&lt;meta charset="UTF-8"&gt;</code>: Specifies the character encoding for the document. UTF-8 is the universal standard and supports almost all characters and symbols in the world. Always include this!</li>
+                    <li><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>: **Crucial for Responsive Design.** This meta tag tells the browser how to control the page's dimensions and scaling. `width=device-width` sets the width of the page to follow the screen-width of the device, and `initial-scale=1.0` sets the initial zoom level when the page is first loaded by the browser.</li>
+                    <li><code>&lt;title&gt;</code>: Sets the title that appears in the browser tab or window title bar. This is also what appears in search engine results. Choose a descriptive and concise title.</li>
+                    <li><code>&lt;link&gt;</code>: Links to external resources.
+                        <ul>
+                            <li>`rel="stylesheet"`: Used to link to external CSS files. Example: `&lt;link rel="stylesheet" href="css/style.css"&gt;`</li>
+                            <li>`rel="icon"` or `rel="shortcut icon"`: Used to link to a favicon (the small icon in the browser tab). Example: `&lt;link rel="icon" href="images/favicon.ico" type="image/x-icon"&gt;`</li>
+                        </ul>
+                    </li>
+                    <li><code>&lt;script&gt;</code>: Links to or contains JavaScript code. The `defer` attribute (recommended) tells the browser to execute the script after the document has been parsed, but before firing `DOMContentLoaded`.</li>
+                    <li><code>&lt;base&gt;</code>: Specifies the base URL/target for all relative URLs in the document. (Use with caution, can complicate things).</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Learn HTML and CSS with interactive examples."&gt;
+    &lt;meta name="keywords" content="HTML, CSS, Web Development, Learn to code"&gt;
+    &lt;meta name="author" content="WebDev Hub Team"&gt;
+    &lt;title&gt;Page with Metadata & External Resources&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;link rel="icon" href="https://placehold.co/16x16/005f73/FFFFFF?text=Fav" type="image/x-icon"&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Check the browser tab for the title and the console for script output!&lt;/h1&gt;
+    &lt;script&gt;console.log("Script loaded from head!");&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-head-elements', '&lt;h1&gt;This content is in the body. The title is in the tab.&lt;/h1&gt;&lt;script&gt;console.log(\'Script loaded from head!\');&lt;/script&gt;')">Try It Yourself</button>
+                    <iframe id="html-head-elements-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-3">
+                <h3>1.3 Text Formatting: Headings, Paragraphs, and Emphasis</h3>
+                <p>HTML provides various tags to structure and format text content, giving it semantic meaning beyond just visual appearance.</p>
+                <ul>
+                    <li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>: **Headings**. These define the hierarchy of content on your page. `h1` is the most important (usually the main title of the page), and `h6` is the least important. Use them logically for structure, not just for size.</li>
+                    <li><code>&lt;p&gt;</code>: **Paragraph**. The most common tag for blocks of text.</li>
+                    <li><code>&lt;strong&gt;</code>: Indicates **strong importance**. Browsers typically render this as bold text. It's semantic, meaning it conveys importance, not just visual style.</li>
+                    <li><code>&lt;em&gt;</code>: Represents **emphasis**. Browsers typically render this as italic text. Also semantic, indicating a stress emphasis.</li>
+                    <li><code>&lt;b&gt;</code>: **Bold text**. Use for visually bolding text without conveying extra importance (e.g., product names in a review). Less semantic than `<strong>`.</li>
+                    <li><code>&lt;i&gt;</code>: **Italic text**. Use for text that is set off from the normal prose, such as a technical term, a foreign phrase, or a thought. Less semantic than `<em>`.</li>
+                    <li><code>&lt;mark&gt;</code>: **Marked/highlighted text**.</li>
+                    <li><code>&lt;small&gt;</code>: Represents **side comments** and small print (e.g., copyright).</li>
+                    <li><code>&lt;del&gt;</code>: **Deleted text**. Represents content that has been removed from the document.</li>
+                    <li><code>&lt;ins&gt;</code>: **Inserted text**. Represents content that has been added to the document.</li>
+                    <li><code>&lt;sub&gt;</code>: **Subscript text** (e.g., chemical formulas like H<sub>2</sub>O).</li>
+                    <li><code>&lt;sup&gt;</code>: **Superscript text** (e.g., mathematical exponents like x<sup>2</sup>).</li>
+                    <li><code>&lt;br&gt;</code>: **Line Break**. A self-closing tag that inserts a single line break. Useful for short lines of content where a new paragraph isn't appropriate (e.g., addresses).</li>
+                    <li><code>&lt;hr&gt;</code>: **Horizontal Rule**. A self-closing tag that represents a thematic break between paragraph-level elements (e.g., a change of topic in a story).</li>
+                    <li><code>&lt;blockquote&gt;</code>: For **long quotations** that take up multiple lines.</li>
+                    <li><code>&lt;q&gt;</code>: For **short inline quotations**.</li>
+                    <li><code>&lt;abbr&gt;</code>: For **abbreviations** or acronyms. Use the `title` attribute to provide the full description.</li>
+                    <li><code>&lt;cite&gt;</code>: For the **title of a work** (e.g., a book, song, film).</li>
+                    <li><code>&lt;code&gt;</code>: For **inline code snippets**.</li>
+                    <li><code>&lt;pre&gt;</code>: For **preformatted text**. Preserves whitespace and line breaks, often used for code blocks.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h1&gt;Main Article Title&lt;/h1&gt;
+&lt;h2&gt;Introduction to Web Development&lt;/h2&gt;
+&lt;p&gt;This is a normal paragraph of text. It contains some &lt;strong&gt;important information&lt;/strong&gt; and some &lt;em&gt;emphasized words&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;You can also use &lt;b&gt;bold tags&lt;/b&gt; and &lt;i&gt;italic tags&lt;/i&gt; for visual styling.&lt;/p&gt;
+&lt;p&gt;This text is &lt;mark&gt;highlighted&lt;/mark&gt;.&lt;/p&gt;
+&lt;p&gt;Copyright &lt;small&gt;&amp;copy; 2025 WebDev Hub&lt;/small&gt;.&lt;/p&gt;
+&lt;p&gt;Old price: &lt;del&gt;$29.99&lt;/del&gt; New price: &lt;ins&gt;$19.99&lt;/ins&gt;.&lt;/p&gt;
+&lt;p&gt;Water formula: H&lt;sub&gt;2&lt;/sub&gt;O. Math example: E=mc&lt;sup&gt;2&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;This is a paragraph.&lt;br&gt;It has a line break.&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote cite="http://www.example.com/quote"&gt;
+    &lt;p&gt;The only way to do great work is to love what you do.&lt;/p&gt;
+    &lt;footer&gt;&lt;cite&gt;Steve Jobs&lt;/cite&gt;&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As a famous person once said, &lt;q&gt;Learning is a journey, not a destination.&lt;/q&gt;&lt;/p&gt;
+&lt;p&gt;Learn about &lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr>&gt;.&lt;/p&gt;
+&lt;p&gt;Use the &lt;code&gt;console.log()&lt;/code&gt; function in JavaScript.&lt;/p&gt;
+&lt;pre&gt;
+function greet() {
+    console.log("Hello!");
+}
+&lt;/pre&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-text-formatting', '&lt;h1&gt;Main Article Title&lt;/h1&gt;&lt;h2&gt;Introduction to Web Development&lt;/h2&gt;&lt;p&gt;This is a normal paragraph of text. It contains some &lt;strong&gt;important information&lt;/strong&gt; and some &lt;em&gt;emphasized words&lt;/em&gt;.&lt;/p&gt;&lt;p&gt;You can also use &lt;b&gt;bold tags&lt;/b&gt; and &lt;i&gt;italic tags&lt;/i&gt; for visual styling.&lt;/p&gt;&lt;p&gt;This text is &lt;mark&gt;highlighted&lt;/mark&gt;.&lt;/p&gt;&lt;p&gt;Copyright &lt;small&gt;&amp;copy; 2025 WebDev Hub&lt;/small&gt;.&lt;/p&gt;&lt;p&gt;Old price: &lt;del&gt;$29.99&lt;/del&gt; New price: &lt;ins&gt;$19.99&lt;/ins&gt;.&lt;/p&gt;&lt;p&gt;Water formula: H&lt;sub&gt;2&lt;/sub&gt;O. Math example: E=mc&lt;sup&gt;2&lt;/sup&gt;.&lt;/p&gt;&lt;p&gt;This is a paragraph.&lt;br&gt;It has a line break.&lt;/p&gt;&lt;hr&gt;&lt;blockquote cite=&quot;http://www.example.com/quote&quot;&gt;&lt;p&gt;The only way to do great work is to love what you do.&lt;/p&gt;&lt;footer&gt;&lt;cite&gt;Steve Jobs&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;&lt;p&gt;As a famous person once said, &lt;q&gt;Learning is a journey, not a destination.&lt;/q&gt;&lt;/p&gt;&lt;p&gt;Learn about &lt;abbr title=&quot;HyperText Markup Language&quot;&gt;HTML&lt;/abbr&gt;.&lt;/p&gt;&lt;p&gt;Use the &lt;code&gt;console.log()&lt;/code&gt; function in JavaScript.&lt;/p&gt;&lt;pre&gt;function greet() {\n    console.log(&quot;Hello!&quot;);\n}&lt;/pre&gt;')">Try It Yourself</button>
+                    <iframe id="html-text-formatting-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-4">
+                <h3>1.4 Lists: Ordered, Unordered, and Description Lists</h3>
+                <p>Lists are fundamental for organizing information clearly and semantically.</p>
+                <ul>
+                    <li><code>&lt;ul&gt;</code>: **Unordered List**. Used for lists where the order of items does not matter. Each list item is typically marked with a bullet point.</li>
+                    <li><code>&lt;ol&gt;</code>: **Ordered List**. Used for lists where the order of items is significant (e.g., steps in a recipe, rankings). Each list item is typically numbered.
+                        <ul>
+                            <li>Attributes: `type` (e.g., `a`, `A`, `i`, `I`, `1`), `start` (starting number), `reversed`.</li>
+                        </ul>
+                    </li>
+                    <li><code>&lt;li&gt;</code>: **List Item**. Used inside `ul` or `ol` to define an item in the list.</li>
+                    <li><code>&lt;dl&gt;</code>: **Description List**. Used for lists of terms and their descriptions.
+                        <ul>
+                            <li><code>&lt;dt&gt;</code>: **Description Term**.</li>
+                            <li><code>&lt;dd&gt;</code>: **Description Description**.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h3&gt;My Favorite Fruits (Unordered)&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;li&gt;Apple&lt;/li&gt;
+    &lt;li&gt;Banana&lt;/li&gt;
+    &lt;li&gt;Cherry&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Steps to Make Coffee (Ordered)&lt;/h3&gt;
+&lt;ol type="1" start="1"&gt;
+    &lt;li&gt;Boil water.&lt;/li&gt;
+    &lt;li&gt;Add coffee grounds.&lt;/li&gt;
+    &lt;li&gt;Pour and enjoy!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Glossary of Terms (Description List)&lt;/h3&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;HyperText Markup Language, the standard markup language for documents designed to be displayed in a web browser.&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Cascading Style Sheets, a style sheet language used for describing the presentation of a document written in HTML.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-lists', '&lt;h3&gt;My Favorite Fruits (Unordered)&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Apple&lt;/li&gt;&lt;li&gt;Banana&lt;/li&gt;&lt;li&gt;Cherry&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Steps to Make Coffee (Ordered)&lt;/h3&gt;&lt;ol type=&quot;1&quot; start=&quot;1&quot;&gt;&lt;li&gt;Boil water.&lt;/li&gt;&lt;li&gt;Add coffee grounds.&lt;/li&gt;&lt;li&gt;Pour and enjoy!&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;Glossary of Terms (Description List)&lt;/h3&gt;&lt;dl&gt;&lt;dt&gt;HTML&lt;/dt&gt;&lt;dd&gt;HyperText Markup Language, the standard markup language for documents designed to be displayed in a web browser.&lt;/dd&gt;&lt;dt&gt;CSS&lt;/dt&gt;&lt;dd&gt;Cascading Style Sheets, a style sheet language used for describing the presentation of a document written in HTML.&lt;/dd&gt;&lt;/dl&gt;')">Try It Yourself</button>
+                    <iframe id="html-lists-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-5">
+                <h3>1.5 Links: Navigating the Web</h3>
+                <p>The `&lt;a&gt;` (anchor) tag creates hyperlinks, which are essential for navigation within your website and across the internet.</p>
+                <ul>
+                    <li>`href`: **(Hypertext Reference)** Specifies the URL the link goes to. This is the most important attribute.
+                        <ul>
+                            <li>**Absolute URL:** Links to an external website (e.g., `https://www.google.com`).</li>
+                            <li>**Relative URL:** Links to another page within the same website (e.g., `about.html`, `images/logo.png`).</li>
+                            <li>**Fragment Identifier (Anchor Link):** Links to a specific section within the same page or another page (e.g., `#section-id`).</li>
+                            <li>**Email Link:** `mailto:email@example.com` (opens email client).</li>
+                            <li>**Phone Link:** `tel:+1234567890` (initiates a phone call on mobile devices).</li>
+                        </ul>
+                    </li>
+                    <li>`target`: Specifies where to open the linked document.
+                        <ul>
+                            <li>`_self` (default): Opens in the same browsing context (current tab/window).</li>
+                            <li>`_blank`: Opens in a new window or tab. **Use with caution**, and consider adding `rel="noopener noreferrer"` for security.</li>
+                            <li>`_parent`: Opens in the parent frame.</li>
+                            <li>`_top`: Opens in the full body of the window.</li>
+                        </ul>
+                    </li>
+                    <li>`title`: Provides extra information about the link (appears as a tooltip on hover). Good for accessibility.</li>
+                    <li>`download`: Forces the browser to download the linked URL as a file.</li>
+                    <li>`rel`: Specifies the relationship between the current document and the linked document (e.g., `nofollow`, `noopener`, `noreferrer`).</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;p&gt;Visit &lt;a href="https://www.google.com"&gt;Google&lt;/a&gt; for search.&lt;/p&gt;
+&lt;p&gt;Open &lt;a href="https://www.wikipedia.org" target="_blank" rel="noopener noreferrer" title="Opens Wikipedia in a new tab"&gt;Wikipedia&lt;/a&gt; in a new tab.&lt;/p&gt;
+&lt;p&gt;&lt;a href="#html-forms"&gt;Jump to Forms section&lt;/a&gt; (internal link).&lt;/p&gt;
+&lt;p&gt;Send us an &lt;a href="mailto:info@webpage.design"&gt;email&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Call us: &lt;a href="tel:+1234567890"&gt;+1 (234) 567-890&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="sample.pdf" download&gt;Download Sample PDF&lt;/a&gt; (requires a 'sample.pdf' file).&lt;/p&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-links', '&lt;p&gt;Visit &lt;a href=&quot;https://www.google.com&quot; target=&quot;_blank&quot;&gt;Google&lt;/a&gt; for search.&lt;/p&gt;&lt;p&gt;Open &lt;a href=&quot;https://www.wikipedia.org&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; title=&quot;Opens Wikipedia in a new tab&quot;&gt;Wikipedia&lt;/a&gt; in a new tab.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Internal link example&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Send us an &lt;a href=&quot;mailto:info@example.com&quot;&gt;email&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Call us: &lt;a href=&quot;tel:+1234567890&quot;&gt;+1 (234) 567-890&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;#&quot; download&gt;Download Sample File&lt;/a&gt;&lt;/p&gt;')">Try It Yourself</button>
+                    <iframe id="html-links-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-6">
+                <h3>1.6 Images: Adding Visuals</h3>
+                <p>The `&lt;img&gt;` tag embeds images into the document. It's a self-closing tag and is crucial for visual content.</p>
+                <ul>
+                    <li>`src`: Specifies the path to the image file. This can be a relative path (e.g., `images/my-image.jpg`) or an absolute URL (e.g., `https://example.com/image.png`).</li>
+                    <li>`alt`: **(Alternative Text)** Provides alternative text for the image. This is **crucial for accessibility** (screen readers describe the image using this text) and for SEO. It also displays if the image fails to load. Always provide meaningful `alt` text.</li>
+                    <li>`width` and `height`: Specify the intrinsic dimensions of the image in pixels. While CSS is generally preferred for styling, providing these can help prevent Cumulative Layout Shift (CLS) by reserving space for the image before it loads.</li>
+                    <li>`loading="lazy"`: (HTML5) Defers loading of images that are off-screen until the user scrolls near them, improving performance.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h3&gt;A Sample Image&lt;/h3&gt;
+&lt;img src="https://placehold.co/300x200/005f73/FFFFFF?text=Placeholder+Image" alt="A simple placeholder image for demonstration purposes" width="300" height="200" loading="lazy"&gt;
+&lt;p&gt;This image is a placeholder. In a real project, you'd use your own image files. The 'alt' text is vital for accessibility.&lt;/p&gt;
+&lt;img src="nonexistent.jpg" alt="A broken image example, showing alt text" width="200" height="150"&gt;
+&lt;p&gt;Even if the image fails to load, the 'alt' text provides context.&lt;/p&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-images', '&lt;h3&gt;A Sample Image&lt;/h3&gt;&lt;img src=&quot;https://placehold.co/300x200/0a9396/FFFFFF?text=Image+Example&quot; alt=&quot;A placeholder image for demonstration&quot; width=&quot;300&quot; height=&quot;200&quot;&gt;&lt;p&gt;This image is a placeholder.&lt;/p&gt;&lt;img src=&quot;nonexistent.jpg&quot; alt=&quot;A broken image example, showing alt text&quot; width=&quot;200&quot; height=&quot;150&quot;&gt;&lt;p&gt;Even if the image fails to load, the &apos;alt&apos; text provides context.&lt;/p&gt;')">Try It Yourself</button>
+                    <iframe id="html-images-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-7">
+                <h3>1.7 Tables: Organizing Tabular Data</h3>
+                <p>Tables are used to display data in a grid format (rows and columns). They should be used for tabular data, not for page layout.</p>
+                <ul>
+                    <li>`&lt;table&gt;`: Defines the entire table.</li>
+                    <li>`&lt;caption&gt;`: Provides a title or description for the table, improving accessibility.</li>
+                    <li>`&lt;thead&gt;`: Groups the header content (e.g., column titles) of the table.</li>
+                    <li>`&lt;tbody&gt;`: Groups the main body content of the table.</li>
+                    <li>`&lt;tfoot&gt;`: Groups the footer content (e.g., totals) of the table.</li>
+                    <li>`&lt;tr&gt;`: Table Row. Defines a row of cells in a table.</li>
+                    <li>`&lt;th&gt;`: Table Header. Defines a header cell in a table. By default, content is bold and centered. Use the `scope` attribute (`col` or `row`) for accessibility.</li>
+                    <li>`&lt;td&gt;`: Table Data. Defines a standard data cell in a table.</li>
+                    <li>`colspan`: Attribute on `th` or `td` to make a cell span multiple columns.</li>
+                    <li>`rowspan`: Attribute on `th` or `td` to make a cell span multiple rows.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h3&gt;Monthly Sales Report&lt;/h3&gt;
+&lt;table border="1" style="width:100%; border-collapse: collapse;"&gt;
+    &lt;caption&gt;Sales Performance by Quarter for 2024&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Month&lt;/th&gt;
+            &lt;th scope="col"&gt;Sales ($)&lt;/th&gt;
+            &lt;th scope="col"&gt;Profit ($)&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;January&lt;/td&gt>
+            &lt;td&gt;15000&lt;/td&gt;
+            &lt;td&gt;5000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;February&lt;/td&gt;
+            &lt;td&gt;18000&lt;/td&gt;
+            &lt;td&gt;6200&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;March&lt;/td&gt;
+            &lt;td&gt;22000&lt;/td&gt;
+            &lt;td&gt;8000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th colspan="2" scope="row"&gt;Q1 Total Sales&lt;/th&gt;
+            &lt;td&gt;55000&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="3"&gt;Data updated: 2024-03-31&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-tables', '&lt;table border=&quot;1&quot; style=&quot;width:100%; border-collapse: collapse;&quot;&gt;&lt;caption&gt;Sales Performance by Quarter for 2024&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Month&lt;/th&gt;&lt;th&gt;Sales ($)&lt;/th&gt;&lt;th&gt;Profit ($)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;January&lt;/td&gt;&lt;td&gt;15000&lt;/td&gt;&lt;td&gt;5000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;February&lt;/td&gt;&lt;td&gt;18000&lt;/td&gt;&lt;td&gt;6200&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;March&lt;/td&gt;&lt;td&gt;22000&lt;/td&gt;&lt;td&gt;8000&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th colspan=&quot;2&quot; scope=&quot;row&quot;&gt;Q1 Total Sales&lt;/th&gt;&lt;td&gt;55000&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tfoot&gt;&lt;tr&gt;&lt;td colspan=&quot;3&quot;&gt;Data updated: 2024-03-31&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;&lt;/table&gt;')">Try It Yourself</button>
+                    <iframe id="html-tables-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-8">
+                <h3>1.8 Forms: User Input</h3>
+                <p>Forms are used to collect user input. The `&lt;form&gt;` element acts as a container for various input controls. Forms are crucial for user interaction on the web, from logins to contact forms and search bars.</p>
+                <ul>
+                    <li>`&lt;form&gt;`: Defines an HTML form.
+                        <ul>
+                            <li>`action`: Specifies where to send the form data when a form is submitted (e.g., a server-side script).</li>
+                            <li>`method`: Specifies the HTTP method to use when sending data (`GET` or `POST`). `GET` appends data to the URL (visible), `POST` sends data in the request body (not visible).</li>
+                            <li>`autocomplete`: Controls if the browser can autocomplete form inputs (`on` or `off`).</li>
+                        </ul>
+                    </li>
+                    <li>`&lt;label&gt;`: Provides a label for an input element. Using the `for` attribute (matching the input's `id`) is crucial for accessibility, allowing users to click the label to focus the input.</li>
+                    <li>`&lt;input&gt;`: Creates various input fields. This is a highly versatile tag, with its behavior determined by the `type` attribute.
+                        <ul>
+                            <li>`type="text"`: Single-line text input.</li>
+                            <li>`type="password"`: Text input where characters are masked.</li>
+                            <li>`type="email"`: For email addresses (browser validates format).</li>
+                            <li>`type="number"`: For numerical input (with built-in spinner controls).</li>
+                            <li>`type="date"`, `type="time"`, `type="datetime-local"`: Date and time pickers.</li>
+                            <li>`type="range"`: Slider control.</li>
+                            <li>`type="color"`: Color picker.</li>
+                            <li>`type="checkbox"`: Allows multiple selections.</li>
+                            <li>`type="radio"`: Allows only one selection from a group (use same `name` attribute for grouping).</li>
+                            <li>`type="file"`: For file uploads. Use `accept` attribute to specify allowed file types.</li>
+                            <li>`type="submit"`: A button that submits the form.</li>
+                            <li>`type="reset"`: A button that resets form fields to their initial values.</li>
+                            <li>`type="hidden"`: Invisible input for sending data not directly entered by the user.</li>
+                            <li>`type="search"`: For search fields.</li>
+                            <li>`type="url"`: For URLs.</li>
+                            <li>`type="tel"`: For telephone numbers.</li>
+                        </ul>
+                        Other common attributes for `&lt;input&gt;`: `name`, `id`, `value`, `placeholder`, `required`, `readonly`, `disabled`, `min`, `max`, `step`, `pattern`.
+                    </li>
+                    <li>`&lt;textarea&gt;`: Multi-line text input area. Attributes: `rows`, `cols`, `placeholder`, `required`.</li>
+                    <li>`&lt;select&gt;` and `&lt;option&gt;`: Dropdown list.
+                        <ul>
+                            <li>`&lt;select&gt;` attributes: `name`, `id`, `multiple`, `size`.</li>
+                            <li>`&lt;option&gt;` attributes: `value`, `selected`, `disabled`.</li>
+                            <li>`&lt;optgroup&gt;`: Groups related options in a dropdown.</li>
+                        </ul>
+                    </li>
+                    <li>`&lt;button&gt;`: A clickable button. Can be `type="submit"`, `type="reset"`, or `type="button"` (default, for JavaScript interaction).</li>
+                    <li>`&lt;fieldset&gt;` and `&lt;legend&gt;`: Used to group related elements in a form, with `&lt;legend&gt;` providing a caption for the `&lt;fieldset&gt;`. Improves form organization and accessibility.</li>
+                    <li>`&lt;datalist&gt;`: Provides a list of pre-defined options for an `&lt;input&gt;` element. Users can choose from the list or enter their own value.</li>
+                    <li>`&lt;output&gt;`: Represents the result of a calculation or user action. Often used with JavaScript.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h3&gt;Advanced User Registration Form&lt;/h3&gt;
+&lt;form action="#" method="post" autocomplete="on"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Personal Information&lt;/legend&gt;
+        &lt;p&gt;
+            &lt;label for="fullname"&gt;Full Name:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="text" id="fullname" name="fullname" placeholder="John Doe" required&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="user_email"&gt;Email:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="email" id="user_email" name="user_email" placeholder="john.doe@example.com" required&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="user_password"&gt;Password:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="password" id="user_password" name="user_password" minlength="8" required&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="date" id="dob" name="dob" min="1900-01-01" max="2025-12-31"&gt;
+        &lt;/p&gt;
+    &lt;/fieldset&gt;
+
+    &lt;fieldset&gt;
+        &lt;legend&gt;Preferences&lt;/legend&gt;
+        &lt;p&gt;
+            &lt;label for="fav_color"&gt;Favorite Color:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="color" id="fav_color" name="fav_color" value="#005f73"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="volume"&gt;Volume (0-100):&lt;/label&gt;&lt;br&gt;
+            &lt;input type="range" id="volume" name="volume" min="0" max="100" value="50" oninput="this.nextElementSibling.value=this.value"&gt;&lt;output&gt;50&lt;/output&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="browser"&gt;Choose your browser from the list:&lt;/label&gt;&lt;br&gt;
+            &lt;input list="browsers" id="browser" name="browser"&gt;
+            &lt;datalist id="browsers"&gt;
+                &lt;option value="Chrome"&gt;
+                &lt;option value="Firefox"&gt;
+                &lt;option value="Edge"&gt;
+                &lt;option value="Safari"&gt;
+                &lt;option value="Opera"&gt;
+            &lt;/datalist&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="message"&gt;Your Message:&lt;/label&gt;&lt;br&gt;
+            &lt;textarea id="message" name="message" rows="5" placeholder="Enter your message here..."&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="course_interest"&gt;Interested in:&lt;/label&gt;&lt;br&gt;
+            &lt;select id="course_interest" name="course_interest" multiple size="3"&gt;
+                &lt;optgroup label="Frontend"&gt;
+                    &lt;option value="html"&gt;HTML&lt;/option&gt;
+                    &lt;option value="css"&gt;CSS&lt;/option&gt;
+                    &lt;option value="js"&gt;JavaScript&lt;/option&gt;
+                &lt;/optgroup&gt;
+                &lt;optgroup label="Backend"&gt;
+                    &lt;option value="python"&gt;Python&lt;/option&gt;
+                    &lt;option value="node"&gt;Node.js&lt;/option&gt;
+                &lt;/optgroup&gt;
+            &lt;/select&gt;
+        &lt;/p&gt;
+    &lt;/fieldset&gt;
+
+    &lt;p&gt;
+        &lt;input type="checkbox" id="terms" name="terms" required&gt;
+        &lt;label for="terms"&gt;I agree to the &lt;a href="#"&gt;terms and conditions&lt;/a&gt;.&lt;/label&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;button type="submit"&gt;Register Now&lt;/button&gt;
+        &lt;button type="reset"&gt;Clear Form&lt;/button&gt;
+    &lt;/p&gt;
+&lt;/form&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-forms-advanced', '&lt;style&gt;form{padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9; max-width:500px; margin:20px auto;} fieldset{border:1px solid #ccc; border-radius:5px; padding:10px; margin-bottom:15px;} legend{font-weight:bold; color:#005f73; padding:0 5px;} label{display:block; margin-bottom:5px; font-weight:500;} input[type=&quot;text&quot;], input[type=&quot;email&quot;], input[type=&quot;password&quot;], input[type=&quot;date&quot;], input[type=&quot;color&quot;], input[type=&quot;number&quot;], textarea, select{width:calc(100% - 18px); padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:4px;} input[type=&quot;range&quot;]{width:calc(100% - 60px); vertical-align:middle;} output{display:inline-block; margin-left:10px; font-weight:bold;} button{background-color:#0a9396; color:white; padding:10px 15px; border:none; border-radius:5px; cursor:pointer; margin-right:10px;} button[type=&quot;reset&quot;]{background-color:#ccc; color:#333;} button:hover{opacity:0.9;}&lt;/style&gt;&lt;form action=&quot;#&quot; method=&quot;post&quot; autocomplete=&quot;on&quot;&gt;&lt;fieldset&gt;&lt;legend&gt;Personal Information&lt;/legend&gt;&lt;p&gt;&lt;label for=&quot;fullname_ex&quot;&gt;Full Name:&lt;/label&gt;&lt;br&gt;&lt;input type=&quot;text&quot; id=&quot;fullname_ex&quot; name=&quot;fullname_ex&quot; placeholder=&quot;John Doe&quot; required&gt;&lt;/p&gt;&lt;p&gt;&lt;label for=&quot;user_email_ex&quot;&gt;Email:&lt;/label&gt;&lt;br&gt;&lt;input type=&quot;email&quot; id=&quot;user_email_ex&quot; name=&quot;user_email_ex&quot; placeholder=&quot;john.doe@example.com&quot; required&gt;&lt;/p&gt;&lt;p&gt;&lt;label for=&quot;user_password_ex&quot;&gt;Password:&lt;/label&gt;&lt;br&gt;&lt;input type=&quot;password&quot; id=&quot;user_password_ex&quot; name=&quot;user_password_ex&quot; minlength=&quot;8&quot; required&gt;&lt;/p&gt;&lt;p&gt;&lt;label for=&quot;dob_ex&quot;&gt;Date of Birth:&lt;/label&gt;&lt;br&gt;&lt;input type=&quot;date&quot; id=&quot;dob_ex&quot; name=&quot;dob_ex&quot; min=&quot;1900-01-01&quot; max=&quot;2025-12-31&quot;&gt;&lt;/p&gt;&lt;/fieldset&gt;&lt;fieldset&gt;&lt;legend&gt;Preferences&lt;/legend&gt;&lt;p&gt;&lt;label for=&quot;fav_color_ex&quot;&gt;Favorite Color:&lt;/label&gt;&lt;br&gt;&lt;input type=&quot;color&quot; id=&quot;fav_color_ex&quot; name=&quot;fav_color_ex&quot; value=&quot;#005f73&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;label for=&quot;volume_ex&quot;&gt;Volume (0-100):&lt;/label&gt;&lt;br&gt;&lt;input type=&quot;range&quot; id=&quot;volume_ex&quot; name=&quot;volume_ex&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;50&quot; oninput=&quot;this.nextElementSibling.value=this.value&quot;&gt;&lt;output&gt;50&lt;/output&gt;&lt;/p&gt;&lt;p&gt;&lt;label for=&quot;browser_ex&quot;&gt;Choose your browser from the list:&lt;/label&gt;&lt;br&gt;&lt;input list=&quot;browsers_ex&quot; id=&quot;browser_ex&quot; name=&quot;browser_ex&quot;&gt;&lt;datalist id=&quot;browsers_ex&quot;&gt;&lt;option value=&quot;Chrome&quot;&gt;&lt;option value=&quot;Firefox&quot;&gt;&lt;option value=&quot;Edge&quot;&gt;&lt;/datalist&gt;&lt;/p&gt;&lt;p&gt;&lt;label for=&quot;message_ex&quot;&gt;Your Message:&lt;/label&gt;&lt;br&gt;&lt;textarea id=&quot;message_ex&quot; name=&quot;message_ex&quot; rows=&quot;3&quot; placeholder=&quot;Enter your message here...&quot;&gt;&lt;/textarea&gt;&lt;/p&gt;&lt;p&gt;&lt;label for=&quot;course_interest_ex&quot;&gt;Interested in:&lt;/label&gt;&lt;br&gt;&lt;select id=&quot;course_interest_ex&quot; name=&quot;course_interest_ex&quot; multiple size=&quot;3&quot;&gt;&lt;optgroup label=&quot;Frontend&quot;&gt;&lt;option value=&quot;html&quot;&gt;HTML&lt;/option&gt;&lt;option value=&quot;css&quot;&gt;CSS&lt;/option&gt;&lt;/optgroup&gt;&lt;optgroup label=&quot;Backend&quot;&gt;&lt;option value=&quot;python&quot;&gt;Python&lt;/option&gt;&lt;/optgroup&gt;&lt;/select&gt;&lt;/p&gt;&lt;/fieldset&gt;&lt;p&gt;&lt;input type=&quot;checkbox&quot; id=&quot;terms_ex&quot; name=&quot;terms_ex&quot; required&gt;&lt;label for=&quot;terms_ex&quot;&gt;I agree to the &lt;a href=&quot;#&quot;&gt;terms and conditions&lt;/a&gt;.&lt;/label&gt;&lt;/p&gt;&lt;p&gt;&lt;button type=&quot;submit&quot;&gt;Register Now&lt;/button&gt;&lt;button type=&quot;reset&quot;&gt;Clear Form&lt;/button&gt;&lt;/p&gt;&lt;/form&gt;')">Try It Yourself</button>
+                    <iframe id="html-forms-advanced-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-9">
+                <h3>1.9 Semantic HTML5: Meaningful Structure</h3>
+                <p>HTML5 introduced new semantic elements that provide meaning about the content they contain, improving accessibility, SEO, and code readability. Using these elements correctly is crucial for building modern, well-structured web pages.</p>
+                <ul>
+                    <li>`&lt;header&gt;`: Represents introductory content, usually containing navigation, branding (logo), and headings for its nearest ancestor sectioning content or the entire page.</li>
+                    <li>`&lt;nav&gt;`: Represents a section of a page that provides navigation links, either to other parts of the current document or to other documents.</li>
+                    <li>`&lt;main&gt;`: Represents the dominant content of the `&lt;body&gt;` of a document. There should only be one `&lt;main&gt;` element per document, and it should not be nested within `&lt;article&gt;`, `&lt;aside&gt;`, `&lt;footer&gt;`, `&lt;header&gt;`, or `&lt;nav&gt;`.</li>
+                    <li>`&lt;section&gt;`: Represents a standalone section of HTML content. It's a generic sectioning element that groups related content, typically with a heading. Think of it as a thematic grouping of content.</li>
+                    <li>`&lt;article&gt;`: Represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., a blog post, a news story, a comment).</li>
+                    <li>`&lt;aside&gt;`: Represents a portion of a document whose content is only indirectly related to the document's main content. It's often presented as a sidebar or a callout box.</li>
+                    <li>`&lt;footer&gt;`: Represents a footer for its nearest sectioning content or for the root element (`&lt;html&gt;`). A footer typically contains information about its containing element, like authorship, copyright, or related links.</li>
+                    <li>`&lt;figure&gt;` and `&lt;figcaption&gt;`: Used to encapsulate media content (like images, videos, audio, charts) that is referenced from the main flow of the document, along with its caption. `&lt;figcaption&gt;` provides a caption for the `&lt;figure&gt;` element.</li>
+                    <li>`&lt;time&gt;`: Represents a specific period in time or a date. The `datetime` attribute can be used to specify a machine-readable format.</li>
+                    <li>`&lt;address&gt;`: Represents contact information for its nearest `&lt;article&gt;` or `&lt;body&gt;`.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;My Awesome Blog&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Articles&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Latest Articles&lt;/h2&gt;
+            &lt;article&gt;
+                &lt;h3&gt;The Power of Semantic HTML&lt;/h3&gt;
+                &lt;p&gt;Published on &lt;time datetime="2025-07-14"&gt;July 14, 2025&lt;/time&gt; by Jane Doe.&lt;/p&gt;
+                &lt;p&gt;This article discusses how using semantic HTML improves web accessibility and SEO.&lt;/p&gt;
+                &lt;figure&gt;
+                    &lt;img src="https://placehold.co/400x200/003049/FFFFFF?text=Semantic+HTML" alt="Diagram showing semantic HTML elements"&gt;
+                    &lt;figcaption&gt;A visual representation of semantic HTML structure.&lt;/figcaption&gt;
+                &lt;/figure&gt;
+                &lt;p&gt;... (rest of the article content) ...&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article&gt;
+                &lt;h3&gt;CSS Grid vs. Flexbox&lt;/h3&gt;
+                &lt;p&gt;Published on &lt;time datetime="2025-07-10"&gt;July 10, 2025&lt;/time&gt; by John Smith.&lt;/p&gt;
+                &lt;p&gt;A comparison of two powerful CSS layout methods.&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;aside&gt;
+            &lt;h3&gt;Popular Tags&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;#HTML5&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;#CSS3&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;#JavaScript&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2025 My Awesome Blog. All rights reserved.&lt;/p&gt;
+        &lt;address&gt;
+            Contact: &lt;a href="mailto:info@myawesomeblog.com"&gt;info@myawesomeblog.com&lt;/a&gt;&lt;br&gt;
+            123 Web Dev Lane, HTML City, CSS State
+        &lt;/address&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-semantic-advanced', '&lt;style&gt;body{font-family:sans-serif; margin:0; padding:10px;} header, footer, main, article, aside, nav, section, figure, address {border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;} header {background:#f0f0f0;} nav ul{list-style:none; padding:0;} nav li{display:inline; margin-right:10px;} aside {background:#e0e0e0;} address{font-style:normal;}&lt;/style&gt;&lt;header&gt;&lt;h1&gt;My Awesome Blog&lt;/h1&gt;&lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Articles&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;&lt;/header&gt;&lt;main&gt;&lt;section&gt;&lt;h2&gt;Latest Articles&lt;/h2&gt;&lt;article&gt;&lt;h3&gt;The Power of Semantic HTML&lt;/h3&gt;&lt;p&gt;Published on &lt;time datetime=&quot;2025-07-14&quot;&gt;July 14, 2025&lt;/time&gt; by Jane Doe.&lt;/p&gt;&lt;p&gt;This article discusses how using semantic HTML improves web accessibility and SEO.&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://placehold.co/400x200/003049/FFFFFF?text=Semantic+HTML&quot; alt=&quot;Diagram showing semantic HTML elements&quot;&gt;&lt;figcaption&gt;A visual representation of semantic HTML structure.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/article&gt;&lt;article&gt;&lt;h3&gt;CSS Grid vs. Flexbox&lt;/h3&gt;&lt;p&gt;Published on &lt;time datetime=&quot;2025-07-10&quot;&gt;July 10, 2025&lt;/time&gt; by John Smith.&lt;/p&gt;&lt;p&gt;A comparison of two powerful CSS layout methods.&lt;/p&gt;&lt;/article&gt;&lt;/section&gt;&lt;aside&gt;&lt;h3&gt;Popular Tags&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;#HTML5&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;#CSS3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;#&quot;&gt;#JavaScript&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/aside&gt;&lt;/main&gt;&lt;footer&gt;&lt;p&gt;&amp;copy; 2025 My Awesome Blog. All rights reserved.&lt;/p&gt;&lt;address&gt;Contact: &lt;a href=&quot;mailto:info@myawesomeblog.com&quot;&gt;info@myawesomeblog.com&lt;/a&gt;&lt;br&gt;123 Web Dev Lane, HTML City, CSS State&lt;/address&gt;&lt;/footer&gt;')">Try It Yourself</button>
+                    <iframe id="html-semantic-advanced-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-10">
+                <h3>1.10 Multimedia: Audio and Video</h3>
+                <p>HTML5 introduced native support for embedding audio and video directly into web pages without relying on third-party plugins like Flash. This significantly improves accessibility and performance.</p>
+                <h4>The `&lt;video&gt;` Element:</h4>
+                <ul>
+                    <li>`src`: Path to the video file.</li>
+                    <li>`controls`: Adds default video controls (play/pause, volume, fullscreen).</li>
+                    <li>`autoplay`: Starts playing the video automatically (often blocked by browsers unless `muted`).</li>
+                    <li>`loop`: Repeats the video once it ends.</li>
+                    <li>`muted`: Mutes the audio by default.</li>
+                    <li>`poster`: Specifies an image to be shown while the video is downloading, or until the user hits the play button.</li>
+                    <li>`width`, `height`: Sets the dimensions of the video player.</li>
+                    <li>`&lt;source&gt;`: Used inside `&lt;video&gt;` or `&lt;audio&gt;` to specify multiple media resources (different formats) for the browser to choose from. This ensures compatibility across browsers.</li>
+                    <li>`&lt;track&gt;`: Used inside `&lt;video&gt;` to specify text tracks (subtitles, captions, descriptions, chapters, metadata).</li>
+                </ul>
+                <h4>A The `&lt;audio&gt;` Element:</h4>
+                <ul>
+                    <li>`src`: Path to the audio file.</li>
+                    <li>`controls`: Adds default audio controls (play/pause, volume).</li>
+                    <li>`autoplay`, `loop`, `muted`: Similar to video.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h4&gt;Sample Video&lt;/h4&gt;
+&lt;video width="320" height="240" controls poster="https://placehold.co/320x240/003049/FFFFFF?text=Video+Poster"&gt;
+    &lt;source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"&gt;
+    &lt;source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg"&gt;
+    Your browser does not support the video tag.
+    &lt;track kind="captions" src="captions.vtt" srclang="en" label="English"&gt;
+&lt;/video&gt;
+&lt;h4&gt;Autoplay Muted Video (Common for backgrounds)&lt;/h4&gt;
+&lt;video width="320" height="240" autoplay loop muted&gt;
+    &lt;source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;h4&gt;Sample Audio&lt;/h4&gt;
+&lt;audio controls&gt;
+    &lt;source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg"&gt;
+    &lt;source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"&gt;
+    Your browser does not support the audio element.
+&lt;/audio&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-multimedia', '&lt;h4&gt;Sample Video&lt;/h4&gt;&lt;video width=&quot;320&quot; height=&quot;240&quot; controls poster=&quot;https://placehold.co/320x240/003049/FFFFFF?text=Video+Poster&quot;&gt;&lt;source src=&quot;https://www.w3schools.com/html/mov_bbb.mp4&quot; type=&quot;video/mp4&quot;&gt;Your browser does not support the video tag.&lt;/video&gt;&lt;h4&gt;Autoplay Muted Video (Common for backgrounds)&lt;/h4&gt;&lt;video width=&quot;320&quot; height=&quot;240&quot; autoplay loop muted&gt;&lt;source src=&quot;https://www.w3schools.com/html/mov_bbb.mp4&quot; type=&quot;video/mp4&quot;&gt;Your browser does not support the video tag.&lt;/video&gt;&lt;h4&gt;Sample Audio&lt;/h4&gt;&lt;audio controls&gt;&lt;source src=&quot;https://www.w3schools.com/html/horse.mp3&quot; type=&quot;audio/mpeg&quot;&gt;Your browser does not support the audio element.&lt;/audio&gt;')">Try It Yourself</button>
+                    <iframe id="html-multimedia-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-11">
+                <h3>1.11 Iframes: Embedding External Content</h3>
+                <p>The `&lt;iframe&gt;` tag is used to embed another HTML document within the current HTML document. It creates an inline frame.</p>
+                <ul>
+                    <li>`src`: The URL of the document to embed.</li>
+                    <li>`width`, `height`: Sets the dimensions of the iframe.</li>
+                    <li>`title`: Provides an accessible name for the iframe (important!).</li>
+                    <li>`frameborder="0"`: (Deprecated in HTML5, use CSS `border: none;`) Removes the border around the iframe.</li>
+                    <li>`allowfullscreen`: Allows the iframe content to go into fullscreen mode.</li>
+                    <li>`sandbox`: **Crucial for Security!** Enables a set of extra restrictions on the content within the iframe. It's highly recommended to use `sandbox` for untrusted content.
+                        <ul>
+                            <li>`allow-forms`: Allows form submission.</li>
+                            <li>`allow-modals`: Allows opening modal windows.</li>
+                            <li>`allow-popups`: Allows popups.</li>
+                            <li>`allow-scripts`: Allows JavaScript execution.</li>
+                            <li>`allow-same-origin`: Allows content to be treated as being from the same origin. **If omitted, the content is treated as from a unique origin, preventing access to local storage, cookies, etc.**</li>
+                            <li>Use `sandbox="allow-scripts allow-same-origin"` for interactive examples like ours.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h4&gt;Embedding a Map (Google Maps Example)&lt;/h4&gt;
+&lt;iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.250567086884!2d144.963137515319!3d-37.81410797975173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7a0!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1678901234567!5m2!1sen!2sau"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Federation Square Map"&gt;&lt;/iframe&gt;
+
+&lt;h4&gt;Embedding a YouTube Video&lt;/h4&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h4&gt;Embedding a Simple HTML Page (with Sandbox for security)&lt;/h4&gt;
+&lt;iframe srcdoc="&lt;h2&gt;Hello from an iframe!&lt;/h2&gt;&lt;p&gt;This content is sandboxed.&lt;/p&gt;&lt;button onclick=&quot;alert(&apos;Hello!&apos;);&quot;&gt;Click Me (Alert blocked)&lt;/button&gt;"
+        width="400" height="150" title="Sandboxed Example" sandbox="allow-same-origin allow-scripts"&gt;&lt;/iframe&gt;
+&lt;p&gt;Note: The alert might be blocked by the sandbox attribute depending on the browser's security policies.&lt;/p&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-iframes', '&lt;h4&gt;Embedding a Map (Google Maps Example)&lt;/h4&gt;&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.250567086884!2d144.963137515319!3d-37.81410797975173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7a0!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1678901234567!5m2!1sen!2sau&quot; width=&quot;400&quot; height=&quot;300&quot; style=&quot;border:0;&quot; allowfullscreen=&quot;&quot; loading=&quot;lazy&quot; title=&quot;Federation Square Map&quot;&gt;&lt;/iframe&gt;&lt;br&gt;&lt;h4&gt;Embedding a YouTube Video&lt;/h4&gt;&lt;iframe width=&quot;300&quot; height=&quot;200&quot; src=&quot;https://www.youtube.com/embed/dQw4w9WgXcQ&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;br&gt;&lt;h4&gt;Embedding a Simple HTML Page (with Sandbox for security)&lt;/h4&gt;&lt;iframe srcdoc=&quot;&lt;h2&gt;Hello from an iframe!&lt;/h2&gt;&lt;p&gt;This content is sandboxed.&lt;/p&gt;&lt;button onclick=&quot;alert(\'Hello!\');&quot;&gt;Click Me (Alert blocked)&lt;/button&gt;&quot; width=&quot;300&quot; height=&quot;120&quot; title=&quot;Sandboxed Example&quot; sandbox=&quot;allow-same-origin allow-scripts&quot;&gt;&lt;/iframe&gt;')">Try It Yourself</button>
+                    <iframe id="html-iframes-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-12">
+                <h3>1.12 HTML Entities: Special Characters</h3>
+                <p>HTML entities are used to display reserved characters (like `<` or `>`) or characters that are not easily typed on a keyboard (like `©` or `™`). They start with an ampersand (`&`) and end with a semicolon (`;`).</p>
+                <ul>
+                    <li>**Named Entities:** Easier to remember, like `&lt;` for less than, `&gt;` for greater than.</li>
+                    <li>**Numeric Entities:** Use decimal or hexadecimal codes, like `&#60;` or `&#x3C;` for less than.</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;p&gt;Less than: &amp;lt;&lt;/p&gt;
+&lt;p&gt;Greater than: &amp;gt;&lt;/p&gt;
+&lt;p&gt;Ampersand: &amp;amp;&lt;/p&gt;
+&lt;p&gt;Copyright: &amp;copy;&lt;/p&gt;
+&lt;p&gt;Registered Trademark: &amp;reg;&lt;/p&gt;
+&lt;p&gt;Non-breaking space: Hello&amp;nbsp;&amp;nbsp;&amp;nbsp;World (prevents line breaks and adds extra spaces)&lt;/p&gt;
+&lt;p&gt;Euro symbol: &amp;euro;&lt;/p&gt;
+&lt;p&gt;Heart symbol: &amp;#x2764; or &amp;#9829;&lt;/p&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-entities', '&lt;p&gt;Less than: &amp;lt;&lt;/p&gt;&lt;p&gt;Greater than: &amp;gt;&lt;/p&gt;&lt;p&gt;Ampersand: &amp;amp;&lt;/p&gt;&lt;p&gt;Copyright: &amp;copy;&lt;/p&gt;&lt;p&gt;Registered Trademark: &amp;reg;&lt;/p&gt;&lt;p&gt;Non-breaking space: Hello&amp;nbsp;&amp;nbsp;&amp;nbsp;World&lt;/p&gt;&lt;p&gt;Euro symbol: &amp;euro;&lt;/p&gt;&lt;p&gt;Heart symbol: &amp;#x2764;&lt;/p&gt;')">Try It Yourself</button>
+                    <iframe id="html-entities-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-13">
+                <h3>1.13 Accessibility (A11y) Best Practices</h3>
+                <p>Accessibility (often abbreviated as A11y) means designing and developing websites so that people with disabilities can perceive, understand, navigate, and interact with the Web. It's not just a good practice; it's often a legal requirement.</p>
+                <ul>
+                    <li>**Semantic HTML:** As discussed in 1.9, using correct semantic elements (`&lt;header&gt;`, `&lt;nav&gt;`, `&lt;main&gt;`, `&lt;article&gt;`, etc.) provides a clear structure for assistive technologies like screen readers.</li>
+                    <li>**`alt` attribute for Images:** Always provide meaningful `alt` text for `&lt;img&gt;` tags. If an image is purely decorative, use `alt=""`.</li>
+                    <li>**`label` for Form Inputs:** Always associate a `&lt;label&gt;` with its corresponding form input using the `for` and `id` attributes. This allows users to click the label to focus the input and screen readers to announce the label for the input.</li>
+                    <li>**Keyboard Navigation:** Ensure all interactive elements (links, buttons, form fields) are reachable and operable using only the keyboard (Tab, Enter, Spacebar). The default browser focus outline is important.</li>
+                    <li>**Color Contrast:** Ensure sufficient contrast between text and background colors so that users with visual impairments can read the content. Tools like WebAIM Contrast Checker can help.</li>
+                    <li>**Language Declaration:** Always include the `lang` attribute on the `&lt;html&gt;` tag (e.g., `&lt;html lang="en"&gt;`). This tells screen readers the language of the page.</li>
+                    <li>**ARIA Attributes (Accessible Rich Internet Applications):** For complex UI components that cannot be made accessible with native HTML alone (e.g., custom tabs, accordions, dynamic content), ARIA roles, states, and properties can provide additional semantic information to assistive technologies.
+                        <ul>
+                            <li>`role`: Defines the purpose of an element (e.g., `role="button"`, `role="navigation"`).</li>
+                            <li>`aria-label`: Provides a text label for an element when no visible label is present.</li>
+                            <li>`aria-labelledby`: Refers to the ID of an element that serves as a label.</li>
+                            <li>`aria-describedby`: Refers to the ID of an element that provides a description.</li>
+                            <li>`aria-hidden`: Indicates that an element is not visible or perceivable to any user.</li>
+                            <li>`aria-live`: Indicates that an element will be updated, and describes the types of updates the user agent, a assistive technology, and user can expect.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h4&gt;Accessible Image&lt;/h4&gt;
+&lt;img src="https://placehold.co/200x150/0a9396/FFFFFF?text=Accessible+Image" alt="A serene landscape with mountains and a lake at sunset."&gt;
+
+&lt;h4&gt;Accessible Form Input&lt;/h4&gt;
+&lt;label for="username_a11y"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username_a11y" name="username_a11y" aria-describedby="username-hint"&gt;
+&lt;p id="username-hint"&gt;Your username must be unique.&lt;/p&gt;
+
+&lt;h4&gt;ARIA Example (Custom Toggle Button)&lt;/h4&gt;
+&lt;button role="switch" aria-checked="false" id="theme-toggle"&gt;
+    Toggle Dark Mode
+&lt;/button&gt;
+&lt;script&gt;
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        const isChecked = this.getAttribute('aria-checked') === 'true';
+        this.setAttribute('aria-checked', !isChecked);
+        document.body.classList.toggle('dark-mode'); // For visual change
+        console.log('Dark mode toggled: ' + !isChecked);
+    });
+&lt;/script&gt;
+&lt;style&gt;
+    .dark-mode { background-color: #333; color: white; }
+    #theme-toggle { padding: 10px 15px; background-color: #eee; border: 1px solid #ccc; cursor: pointer; }
+    #theme-toggle[aria-checked="true"] { background-color: #005f73; color: white; }
+&lt;/style&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-accessibility', '&lt;h4&gt;Accessible Image&lt;/h4&gt;&lt;img src=&quot;https://placehold.co/200x150/0a9396/FFFFFF?text=Accessible+Image&quot; alt=&quot;A serene landscape with mountains and a lake at sunset.&quot;&gt;&lt;h4&gt;Accessible Form Input&lt;/h4&gt;&lt;label for=&quot;username_a11y_ex&quot;&gt;Username:&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;username_a11y_ex&quot; name=&quot;username_a11y_ex&quot; aria-describedby=&quot;username-hint-ex&quot;&gt;&lt;p id=&quot;username-hint-ex&quot;&gt;Your username must be unique.&lt;/p&gt;&lt;h4&gt;ARIA Example (Custom Toggle Button)&lt;/h4&gt;&lt;button role=&quot;switch&quot; aria-checked=&quot;false&quot; id=&quot;theme-toggle-ex&quot;&gt;Toggle Dark Mode&lt;/button&gt;&lt;script&gt;document.getElementById(\'theme-toggle-ex\').addEventListener(\'click\', function() { const isChecked = this.getAttribute(\'aria-checked\') === \'true\'; this.setAttribute(\'aria-checked\', !isChecked); console.log(\'Dark mode toggled: \' + !isChecked); });&lt;/script&gt;&lt;style&gt;#theme-toggle-ex { padding: 10px 15px; background-color: #eee; border: 1px solid #ccc; cursor: pointer; } #theme-toggle-ex[aria-checked=&quot;true&quot;] { background-color: #005f73; color: white; }&lt;/style&gt;')">Try It Yourself</button>
+                    <iframe id="html-accessibility-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-14">
+                <h3>1.14 Advanced Meta Tags for SEO and Social Media</h3>
+                <p>Beyond `charset` and `viewport`, meta tags play a crucial role in how your website appears in search results and when shared on social media platforms.</p>
+                <ul>
+                    <li>`&lt;meta name="description" content="..."&gt;`: A concise summary of the page's content. Appears in search engine results snippets.</li>
+                    <li>`&lt;meta name="keywords" content="..."&gt;`: (Less relevant for modern SEO, but can still be included) Comma-separated list of keywords.</li>
+                    <li>`&lt;meta name="robots" content="index, follow"&gt;`: Instructs search engine crawlers how to behave.
+                        <ul>
+                            <li>`index`: Allow indexing of the page.</li>
+                            <li>`noindex`: Do not allow indexing.</li>
+                            <li>`follow`: Allow following links on the page.</li>
+                            <li>`nofollow`: Do not allow following links.</li>
+                        </ul>
+                    </li>
+                    <li>`&lt;link rel="canonical" href="..."&gt;`: Specifies the preferred URL for a page, helping to prevent duplicate content issues for SEO.</li>
+                    <li>**Open Graph (OG) Tags (for Facebook, LinkedIn, etc.):** Used to control how your content appears when shared on social media.
+                        <ul>
+                            <li>`&lt;meta property="og:title" content="..."&gt;`</li>
+                            <li>`&lt;meta property="og:description" content="..."&gt;`</li>
+                            <li>`&lt;meta property="og:image" content="..."&gt;` (URL to an image thumbnail)</li>
+                            <li>`&lt;meta property="og:url" content="..."&gt;`</li>
+                            <li>`&lt;meta property="og:type" content="website"&gt;` (or `article`, `video.movie`, etc.)</li>
+                        </ul>
+                    </li>
+                    <li>**Twitter Card Tags:** Similar to Open Graph, but specific to Twitter.
+                        <ul>
+                            <li>`&lt;meta name="twitter:card" content="summary_large_image"&gt;` (or `summary`, `app`, `player`)</li>
+                            <li>`&lt;meta name="twitter:site" content="@yourtwitterhandle"&gt;`</li>
+                            <li>`&lt;meta name="twitter:title" content="..."&gt;`</li>
+                            <li>`&lt;meta name="twitter:description" content="..."&gt;`</li>
+                            <li>`&lt;meta name="twitter:image" content="..."&gt;`</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Awesome Article Title&lt;/title&gt;
+
+    &lt;!-- Standard SEO Meta Tags --&gt;
+    &lt;meta name="description" content="A detailed article about advanced HTML techniques for web developers."&gt;
+    &lt;meta name="keywords" content="HTML, advanced HTML, web development, SEO, semantic HTML"&gt;
+    &lt;meta name="author" content="WebDev Hub Team"&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
+
+    &lt;!-- Canonical URL --&gt;
+    &lt;link rel="canonical" href="https://www.yourwebsite.com/html-course/advanced-html"&gt;
+
+    &lt;!-- Open Graph / Facebook / LinkedIn Meta Tags --&gt;
+    &lt;meta property="og:title" content="Advanced HTML Techniques | WebDev Hub"&gt;
+    &lt;meta property="og:description" content="Master advanced HTML elements and best practices for modern web development."&gt;
+    &lt;meta property="og:image" content="https://placehold.co/1200x630/005f73/FFFFFF?text=Advanced+HTML+Course"&gt;
+    &lt;meta property="og:url" content="https://www.yourwebsite.com/html-course/advanced-html"&gt;
+    &lt;meta property="og:type" content="article"&gt;
+
+    &lt;!-- Twitter Card Meta Tags --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:site" content="@WebpageDesign"&gt;
+    &lt;meta name="twitter:title" content="Advanced HTML Techniques"&gt;
+    &lt;meta name="twitter:description" content="Master advanced HTML elements and best practices for modern web development."&gt;
+    &lt;meta name="twitter:image" content="https://placehold.co/1200x675/0a9396/FFFFFF?text=Advanced+HTML+Twitter"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;This page demonstrates advanced meta tags.&lt;/h1&gt;
+    &lt;p&gt;Check the page source code to see the meta tags in action. These are crucial for SEO and how your page appears when shared on social media.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-meta-advanced', '&lt;h1&gt;This page demonstrates advanced meta tags.&lt;/h1&gt;&lt;p&gt;Check the page source code to see the meta tags in action. These are crucial for SEO and how your page appears when shared on social media.&lt;/p&gt;')">Try It Yourself</button>
+                    <iframe id="html-meta-advanced-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+            <div class="lesson" id="lesson-1-15">
+                <h3>1.15 Data Attributes: Custom Data for Elements</h3>
+                <p>HTML5 introduced `data-*` attributes, which allow you to store custom data privately on HTML elements. This data can then be accessed and manipulated using JavaScript, providing a flexible way to attach extra information to your markup without relying on non-standard attributes or the `id` attribute for data storage.</p>
+                <ul>
+                    <li>**Syntax:** `data-your-attribute-name="value"`</li>
+                    <li>**Naming Convention:** Attribute names must start with `data-` and contain only lowercase letters, numbers, hyphens, dots, colons, or underscores.</li>
+                    <li>**JavaScript Access:** You can access data attributes using the `dataset` property of a DOM element. `element.dataset.yourAttributeName` (note the camelCase conversion from kebab-case).</li>
+                </ul>
+                <div class="code-example">
+                    <pre><code class="language-html">&lt;h4&gt;Product List with Data Attributes&lt;/h4&gt;
+&lt;ul id="product-list"&gt;
+    &lt;li data-product-id="101" data-category="electronics" data-price="499.99"&gt;Laptop Pro (ID: 101)&lt;/li&gt;
+    &lt;li data-product-id="102" data-category="books" data-price="25.50"&gt;HTML Master Guide (ID: 102)&lt;/li&gt;
+    &lt;li data-product-id="103" data-category="electronics" data-price="99.00"&gt;Wireless Mouse (ID: 103)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;button onclick="showProductInfo()"&gt;Show Product Info (JS)&lt;/button&gt;
+&lt;p id="product-info-output"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+    function showProductInfo() {
+        const productList = document.getElementById('product-list');
+        const output = document.getElementById('product-info-output');
+        let info = '';
+
+        productList.querySelectorAll('li').forEach(item => {
+            const id = item.dataset.productId; // Access via .dataset
+            const category = item.dataset.category;
+            const price = item.dataset.price;
+            info += 'Product ID: ' + id + ', Category: ' + category + ', Price: $' + price + '&lt;br&gt;';
+        });
+        output.innerHTML = info;
+    }
+&lt;/script&gt;</code></pre>
+                    <button class="try-it-btn" onclick="showExample('html-data-attributes', '&lt;style&gt;ul{list-style:none; padding:0;} li{background:#f0f0f0; margin-bottom:5px; padding:8px; border-radius:4px;}&lt;/style&gt;&lt;h4&gt;Product List with Data Attributes&lt;/h4&gt;&lt;ul id=&quot;product-list-ex&quot;&gt;&lt;li data-product-id=&quot;101&quot; data-category=&quot;electronics&quot; data-price=&quot;499.99&quot;&gt;Laptop Pro (ID: 101)&lt;/li&gt;&lt;li data-product-id=&quot;102&quot; data-category=&quot;books&quot; data-price=&quot;25.50&quot;&gt;HTML Master Guide (ID: 102)&lt;/li&gt;&lt;/ul&gt;&lt;button onclick=&quot;showProductInfoEx()&quot;&gt;Show Product Info (JS)&lt;/button&gt;&lt;p id=&quot;product-info-output-ex&quot;&gt;&lt;/p&gt;&lt;script&gt;function showProductInfoEx() { const productList = document.getElementById(\'product-list-ex\'); const output = document.getElementById(\'product-info-output-ex\'); let info = \'\'; productList.querySelectorAll(\'li\').forEach(item =&gt; { const id = item.dataset.productId; const category = item.dataset.category; const price = item.dataset.price; info += \'Product ID: \' + id + \', Category: \' + category + \', Price: $\' + price + \'&lt;br&gt;\'; }); output.innerHTML = info; }&lt;/script&gt;')">Try It Yourself</button>
+                    <iframe id="html-data-attributes-iframe" class="code-output-iframe"></iframe>
+                </div>
+            </div>
+
+        </div> <!-- End of lesson-section -->
+    </main>
+
+    <footer>
+        <p>&copy; 2025 WebDev Hub. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

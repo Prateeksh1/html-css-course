@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS Live Compiler - WebDev Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Specific styles for the compiler page */
+        .compiler-container {
+            display: flex;
+            flex-direction: column; /* Stack on small screens */
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .compiler-container {
+                flex-direction: row; /* Side-by-side on larger screens */
+                height: calc(100vh - 180px); /* Adjust height for header/footer */
+            }
+        }
+
+        .editor-panel, .preview-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden; /* For iframe and textarea */
+        }
+
+        .editor-panel h2, .preview-panel h2 {
+            background-color: #005f73;
+            color: white;
+            padding: 10px 15px;
+            margin: 0;
+            font-size: 1.2em;
+            border-bottom: 1px solid #004a5c;
+        }
+
+        .code-editor {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .code-editor textarea {
+            flex-grow: 1;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            font-family: 'Fira Code', 'Consolas', 'Monaco', monospace; /* Monospace font for code */
+            font-size: 0.95em;
+            resize: vertical; /* Allow vertical resizing only */
+            min-height: 150px; /* Minimum height for textareas */
+            box-sizing: border-box; /* Include padding in width/height */
+        }
+
+        @media (min-width: 768px) {
+            .code-editor textarea {
+                min-height: unset; /* Remove min-height for side-by-side */
+                height: 100%; /* Fill available height */
+            }
+        }
+
+        .preview-panel iframe {
+            width: 100%;
+            flex-grow: 1;
+            border: none;
+            background-color: white;
+        }
+
+        .compiler-actions {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .compiler-actions button {
+            background-color: #0a9396;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .compiler-actions button:hover {
+            background-color: #007a82;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">WebDev Hub</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="projects.html">Projects</a>
+            <a href="compiler.html" class="active">Compiler</a> <!-- New link -->
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Live HTML/CSS Compiler</h1>
+
+        <div class="compiler-container">
+            <div class="editor-panel">
+                <h2>Code Editor</h2>
+                <div class="code-editor">
+                    <textarea id="html-code" placeholder="Write your HTML here...">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Live Code</title>
+    <style>
+        /* Your CSS will go here */
+    </style>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is your live HTML and CSS editor.</p>
+    <button>Click Me</button>
+</body>
+</html>
+                    </textarea>
+                    <textarea id="css-code" placeholder="Write your CSS here...">
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #005f73;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1em;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+button {
+    background-color: #0a9396;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #007a82;
+    transform: translateY(-2px);
+}
+                    </textarea>
+                </div>
+            </div>
+            <div class="preview-panel">
+                <h2>Live Preview</h2>
+                <iframe id="live-preview-iframe"></iframe>
+            </div>
+        </div>
+
+        <div class="compiler-actions">
+            <button onclick="runCode()">Run Code (Updates Automatically)</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 WebDev Hub. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script>
+        // Get references to the textarea and iframe elements
+        const htmlCode = document.getElementById('html-code');
+        const cssCode = document.getElementById('css-code');
+        const livePreviewIframe = document.getElementById('live-preview-iframe');
+
+        // Function to update the iframe content
+        function runCode() {
+            // Get the current HTML and CSS content from the textareas
+            const htmlContent = htmlCode.value;
+            const cssContent = cssCode.value;
+
+            // Combine HTML and CSS into a single, complete HTML document string
+            // Inject CSS directly into a <style> tag within the HTML
+            const fullHtmlDocument = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Live Output</title>
+                    <style>
+                        /* Basic reset for consistent rendering */
+                        body, html {
+                            margin: 0;
+                            padding: 0;
+                            height: 100%;
+                            width: 100%;
+                            box-sizing: border-box;
+                        }
+                        /* User's CSS */
+                        ${cssContent}
+                    </style>
+                </head>
+                <body>
+                    ${htmlContent}
+                </body>
+                </html>
+            `;
+
+            // Create a Blob from the HTML string
+            const blob = new Blob([fullHtmlDocument], { type: 'text/html' });
+
+            // Create an object URL for the Blob
+            const objectURL = URL.createObjectURL(blob);
+
+            // Set the iframe's src to the Blob URL
+            livePreviewIframe.src = objectURL;
+
+            // Revoke the object URL when the iframe loads to free up memory
+            // This is important for preventing memory leaks, especially with frequent updates
+            livePreviewIframe.onload = () => {
+                URL.revokeObjectURL(objectURL);
+            };
+            console.log('Live preview updated.');
+        }
+
+        // Add event listeners for live updates as the user types
+        // 'input' event is generally better than 'keyup' for textareas as it catches more changes
+        htmlCode.addEventListener('input', runCode);
+        cssCode.addEventListener('input', runCode);
+
+        // Run code initially when the page loads to show default content
+        document.addEventListener('DOMContentLoaded', runCode);
+    </script>
+</body>
+</html>
