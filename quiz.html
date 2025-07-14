@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Quiz - Webpage Design</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Quiz Specific Styles */
+        .quiz-container {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px; /* Slightly less rounded */
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15); /* More pronounced, softer shadow */
+            max-width: 750px; /* Slightly wider */
+            margin: 2.5rem auto; /* More margin */
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            overflow: hidden; /* Ensures shadows/borders are contained */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-container h2 {
+            font-size: 2.4rem; /* Slightly larger */
+            color: #1a3a5a; /* Deeper blue */
+            margin-bottom: 1.8rem; /* More spacing */
+            font-weight: 700; /* Bolder */
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem; /* Increased spacing */
+            padding: 0 1.5rem; /* More padding */
+            font-size: 1.2rem; /* Slightly larger */
+            color: #334e68; /* Muted dark blue */
+            font-weight: 600; /* Semi-bold */
+        }
+
+        .quiz-timer,
+        .quiz-score-display {
+            background-color: #f0f4f8; /* Softer background */
+            padding: 10px 20px; /* More padding */
+            border-radius: 25px; /* Moderately rounded */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Subtle inner shadow */
+            color: #1a3a5a; /* Consistent text color */
+        }
+
+        .quiz-timer #time-left {
+            color: #005f73; /* Keep brand color for timer value */
+        }
+        .quiz-timer #time-left.low-time { /* Class added by JS for low time */
+            color: #dc3545; /* Red for low time */
+        }
+
+
+        .quiz-question {
+            font-size: 1.6rem; /* Larger, more prominent */
+            color: #333;
+            margin-bottom: 2rem; /* More spacing */
+            min-height: 80px; /* Taller for multi-line questions */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4; /* Better readability */
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2.5rem; /* More spacing */
+        }
+
+        .quiz-options li {
+            background-color: #f8fbfd; /* Very light background */
+            border: 1px solid #e0e6ed; /* Lighter border */
+            border-radius: 8px; /* Consistent rounding */
+            margin-bottom: 0.8rem; /* Slightly less margin between options */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding: 18px 25px; /* More generous padding */
+            font-size: 1.15rem; /* Slightly larger font */
+            color: #334e68; /* Muted dark blue */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow on options */
+        }
+
+        .quiz-options li:hover {
+            background-color: #eaf3f8; /* Softer hover effect */
+            transform: translateY(-2px); /* Less aggressive lift */
+            border-color: #0a9396; /* Brand color on hover */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* More pronounced shadow on hover */
+        }
+
+        .quiz-options input[type="radio"],
+        .quiz-options input[type="checkbox"] {
+            margin-right: 18px; /* More space */
+            transform: scale(1.2); /* Slightly smaller scale for less childish look */
+            cursor: pointer;
+            accent-color: #0a9396; /* Modern accent color for inputs */
+        }
+
+        .quiz-options input[type="text"] {
+            width: calc(100% - 40px); /* Adjust for padding */
+            padding: 12px; /* More padding */
+            border: 1px solid #c3e2ed;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: #005f73;
+            margin-top: 15px; /* More margin */
+            box-sizing: border-box;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.08); /* Subtle inner shadow */
+        }
+
+        /* Feedback styles */
+        .quiz-options li.correct {
+            background-color: #e6ffe6; /* Lighter green */
+            border-color: #28a745;
+            color: #1a5e2d; /* Darker green text */
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2); /* Green shadow */
+        }
+
+        .quiz-options li.incorrect {
+            background-color: #ffe6e6; /* Lighter red */
+            border-color: #dc3545;
+            color: #7c2d3a; /* Darker red text */
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2); /* Red shadow */
+        }
+
+        .quiz-options li.selected-incorrect {
+            background-color: #ffe6e6;
+            border-color: #dc3545;
+            color: #7c2d3a;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .quiz-options li.disabled {
+            opacity: 0.8; /* Slightly less opaque */
+            cursor: not-allowed;
+        }
+
+        .quiz-feedback {
+            font-size: 1.3rem; /* Slightly larger */
+            margin-top: 2rem; /* More spacing */
+            margin-bottom: 1rem;
+            font-weight: bold;
+            min-height: 35px; /* Increased height */
+        }
+
+        .quiz-feedback.correct-feedback {
+            color: #28a745;
+        }
+
+        .quiz-feedback.incorrect-feedback {
+            color: #dc3545;
+        }
+
+        .quiz-explanation {
+            font-size: 1.05rem; /* Slightly larger */
+            color: #4a657c; /* Muted text color */
+            margin-bottom: 1.5rem; /* More spacing */
+            padding: 15px; /* More padding */
+            background-color: #f0f4f8;
+            border-left: 5px solid #005f73; /* Thicker, prominent border */
+            border-radius: 0 8px 8px 0; /* Rounded only on right side */
+            text-align: left;
+            line-height: 1.5; /* Better readability */
+        }
+
+        .quiz-tip {
+            font-size: 0.95rem; /* Slightly larger */
+            color: #005f73;
+            margin-top: 1.5rem; /* More spacing */
+            margin-bottom: 1.5rem;
+            padding: 10px 15px;
+            background-color: #eaf3f8; /* Softer background */
+            border-radius: 8px; /* Consistent rounding */
+            border: 1px solid #c3e2ed; /* Subtle border */
+        }
+
+        .quiz-score {
+            font-size: 2.2rem; /* Larger final score */
+            color: #1a3a5a; /* Deeper blue */
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+            font-weight: bold;
+        }
+
+        .quiz-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem; /* More spacing */
+        }
+
+        .quiz-buttons .cta-btn {
+            padding: 1rem 2.5rem; /* Larger buttons */
+            font-size: 1.2rem; /* Larger font */
+            border-radius: 30px; /* Less extreme rounding */
+            transition: all 0.3s ease; /* Smooth transitions for all button states */
+        }
+
+        .quiz-buttons .cta-btn:hover {
+            transform: translateY(-3px); /* Subtle lift on hover */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More prominent shadow on hover */
+        }
+
+        .quiz-buttons .cta-btn.secondary-cta {
+            background-color: #f7b731; /* More golden yellow */
+            color: #1a3a5a; /* Darker text for contrast */
+            border: none; /* No border for secondary */
+        }
+        .quiz-buttons .cta-btn.secondary-cta:hover {
+            background-color: #ffc857; /* Lighter on hover */
+        }
+
+        /* Difficulty Selection Styles */
+        #difficulty-selection {
+            padding: 2.5rem;
+        }
+        #difficulty-selection h2 {
+            margin-bottom: 1.8rem;
+        }
+        #difficulty-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem; /* Slightly more gap */
+        }
+        #difficulty-buttons .cta-btn {
+            min-width: 140px; /* Wider buttons */
+            padding: 1rem 2rem;
+            font-size: 1.15rem;
+            border-radius: 30px;
+        }
+
+        /* Hide elements initially */
+        #quiz-area, #quiz-result, #restart-button {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Webpage Design</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="quiz.html" class="active">Quiz</a>
+            <a href="projects.html">Projects</a>
+            <a href="compiler.html">Compiler</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Test Your Web Dev Knowledge!</h1>
+
+        <section class="quiz-container">
+            <h2>Web Development Fundamentals Quiz</h2>
+
+            <div id="difficulty-selection">
+                <h2>Choose Your Challenge!</h2>
+                <p>Select a difficulty level to start the quiz:</p>
+                <div id="difficulty-buttons">
+                    <button class="cta-btn" data-difficulty="easy">Easy 🎯</button>
+                    <button class="cta-btn" data-difficulty="medium">Medium ⚙️</button>
+                    <button class="cta-btn" data-difficulty="hard">Hard 🧠</button>
+                    <button class="cta-btn secondary-cta" data-difficulty="all">All Questions</button>
+                </div>
+            </div>
+
+            <div id="quiz-area">
+                <div class="quiz-info">
+                    <span class="quiz-timer">Time: <span id="time-left">15</span>s</span>
+                    <span class="quiz-score-display">Score: <span id="current-score">0</span></span>
+                </div>
+                <p class="quiz-question" id="question"></p>
+                <ul class="quiz-options" id="options"></ul>
+                <div class="quiz-feedback" id="feedback"></div>
+                <div class="quiz-explanation" id="explanation"></div>
+                <div class="quiz-tip" id="tip-display"></div>
+                <div class="quiz-buttons">
+                    <button class="cta-btn" id="submit-button">Submit Answer</button>
+                    <button class="cta-btn secondary-cta" id="next-button" style="display: none;">Next Question</button>
+                </div>
+            </div>
+            <div id="quiz-result" class="quiz-score"></div>
+            <div class="quiz-buttons">
+                <button class="cta-btn" id="restart-button">Play Again</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Webpage Design. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz Questions Data
+        const allQuizData = [
+            // HTML Easy
+            {
+                question: "Which HTML tag is used for creating an unordered list?",
+                options: ["<ol>", "<ul>", "<li>", "<dl>"],
+                correct: 1,
+                explanation: "The `<ul>` tag is used to create an unordered list, where each list item is typically marked with bullet points. `<ol>` is for ordered lists, `<li>` is for list items, and `<dl>` is for description lists.",
+                type: "single-choice",
+                difficulty: "easy",
+                module: "HTML",
+                tip: "Remember 'U' for Unordered!"
+            },
+            {
+                question: "What does HTML stand for?",
+                options: ["HyperText Markup Language", "Hyperlink and Text Markup Language", "High-level Text Machine Language", "Home Tool Markup Language"],
+                correct: 0,
+                explanation: "HTML stands for HyperText Markup Language. It's the standard markup language for documents designed to be displayed in a web browser.",
+                type: "single-choice",
+                difficulty: "easy",
+                module: "HTML",
+                tip: "It's all about marking up your text!"
+            },
+            {
+                question: "Which HTML element is used to define the title of a document?",
+                options: ["<head>", "<title>", "<body>", "<meta>"],
+                correct: 1,
+                explanation: "The `<title>` element defines the title of the document, which is shown in the browser's title bar or tab. The `<head>` element is a container for metadata, and `<meta>` tags provide various metadata, but `<title>` specifically sets the document title.",
+                type: "single-choice",
+                difficulty: "easy",
+                module: "HTML",
+                tip: "The title is what appears in your browser tab!"
+            },
+            {
+                question: "Fill in the blank: The `__` tag is used to create a hyperlink in HTML.",
+                options: [], // Not used for fill-in-the-blank
+                correct: "a",
+                explanation: "The `<a>` (anchor) tag is used to create hyperlinks, which are essential for navigation within your website and across the internet. It requires the `href` attribute to specify the destination URL.",
+                type: "fill-in-blank",
+                difficulty: "easy",
+                module: "HTML",
+                tip: "Think 'anchor' for links!"
+            },
+            {
+                question: "Which of these are block-level HTML elements? (Select all that apply)",
+                options: ["<div>", "<span>", "<p>", "<a>", "<h1>"],
+                correct: [0, 2, 4], // Indices of correct options
+                explanation: "Block-level elements (like `<div>`, `<p>`, `<h1>`) always start on a new line and take up the full width available. `<span>` and `<a>` are inline elements.",
+                type: "multi-choice",
+                difficulty: "easy",
+                module: "HTML",
+                tip: "Block elements are like big, sturdy bricks for your layout."
+            },
+
+            // CSS Easy
+            {
+                question: "Which CSS property is used to change the text color of an element?",
+                options: ["background-color", "font-color", "color", "text-style"],
+                correct: 2,
+                explanation: "The `color` property in CSS is used to set the foreground color of an element's text content. `background-color` changes the background, and `font-color` and `text-style` are not standard CSS properties for this purpose.",
+                type: "single-choice",
+                difficulty: "easy",
+                module: "CSS",
+                tip: "It's simply 'color'!"
+            },
+            {
+                question: "What does CSS stand for?",
+                options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"],
+                correct: 1,
+                explanation: "CSS stands for Cascading Style Sheets. It's a stylesheet language used to describe the presentation of a document written in HTML.",
+                type: "single-choice",
+                difficulty: "easy",
+                module: "CSS",
+                tip: "Think about how styles 'cascade' down through your document."
+            },
+            {
+                question: "Which CSS property is used for making text bold?",
+                options: ["text-weight", "font-bold", "weight", "font-weight"],
+                correct: 3,
+                explanation: "The `font-weight` property sets how thick or thin characters in text should be displayed. Values like `bold` or numerical values (e.g., `700`) make text bold. `text-weight` and `font-bold` are not standard CSS properties.",
+                type: "single-choice",
+                difficulty: "easy",
+                module: "CSS",
+                tip: "It's about the 'weight' of the font!"
+            },
+            {
+                question: "Fill in the blank: The `__` property controls the space outside an element's border.",
+                options: [],
+                correct: "margin",
+                explanation: "The `margin` property creates space around elements, outside of any defined borders. `padding` creates space inside the element, between the content and the border.",
+                type: "fill-in-blank",
+                difficulty: "easy",
+                module: "CSS",
+                tip: "Think of the 'margins' of a page!"
+            },
+            {
+                question: "Which of these are valid ways to include CSS in an HTML document? (Select all that apply)",
+                options: ["Inline styles", "External stylesheet", "Internal stylesheet", "Using <script> tag"],
+                correct: [0, 1, 2],
+                explanation: "CSS can be added in three ways: inline (using the `style` attribute), internal (within a `<style>` tag in the `<head>`), and external (linking a `.css` file using `<link>`). The `<script>` tag is for JavaScript.",
+                type: "multi-choice",
+                difficulty: "easy",
+                module: "CSS",
+                tip: "Three ways to style: in the tag, in the head, or in a separate file!"
+            },
+
+            // HTML Medium
+            {
+                question: "What is the purpose of the `alt` attribute in an `<img>` tag?",
+                options: ["To provide a tooltip on hover", "To specify the image source", "To provide alternative text for screen readers and when image fails to load", "To define the image's dimensions"],
+                correct: 2,
+                explanation: "The `alt` (alternative text) attribute is crucial for accessibility, providing a text description of the image for users who cannot see it (e.g., screen reader users) or when the image fails to load. It also helps with SEO.",
+                type: "single-choice",
+                difficulty: "medium",
+                module: "HTML",
+                tip: "Always think about accessibility!"
+            },
+            {
+                question: "Which semantic HTML5 tag should be used for the main content of a document?",
+                options: ["<section>", "<article>", "<main>", "<div>"],
+                correct: 2,
+                explanation: "The `<main>` element represents the dominant content of the `<body>` of a document. There should only be one `<main>` element per document. `<section>` and `<article>` are for grouping related content, and `<div>` is a generic container.",
+                type: "single-choice",
+                difficulty: "medium",
+                module: "HTML",
+                tip: "It's the 'main' part of your page!"
+            },
+            {
+                question: "Fill in the blank: The `&lt;meta name=\"viewport\" content=\"__\"&gt;` tag is crucial for responsive web design.",
+                options: [],
+                correct: "width=device-width, initial-scale=1.0",
+                explanation: "The `viewport` meta tag with `content=\"width=device-width, initial-scale=1.0\"` tells the browser to set the width of the page to the device's width and set the initial zoom level to 1.0, which is fundamental for responsive design.",
+                type: "fill-in-blank",
+                difficulty: "medium",
+                module: "HTML",
+                tip: "This tag makes your website look good on phones and tablets!"
+            },
+            {
+                question: "Which of these attributes are commonly used with the `<form>` tag? (Select all that apply)",
+                options: ["action", "method", "src", "target", "autocomplete"],
+                correct: [0, 1, 4],
+                explanation: "`action` specifies where to send form data, `method` specifies the HTTP method (`GET` or `POST`), and `autocomplete` controls browser autofill. `src` is for images/scripts, and `target` is for links.",
+                type: "multi-choice",
+                difficulty: "medium",
+                module: "HTML",
+                tip: "Forms need an 'action' and a 'method'!"
+            },
+
+            // CSS Medium
+            {
+                question: "In the CSS Box Model, which property represents the space between the content and the border?",
+                options: ["margin", "border-spacing", "padding", "outline"],
+                correct: 2,
+                explanation: "The `padding` property defines the space between an element's content and its border. `margin` defines space outside the border, and `border-spacing` is for table cells.",
+                type: "single-choice",
+                difficulty: "medium",
+                module: "CSS",
+                tip: "Padding is 'inside' the box."
+            },
+            {
+                question: "Which CSS `display` value makes an element behave like an inline element but allows setting `width` and `height`?",
+                options: ["block", "inline", "inline-block", "none"],
+                correct: 2,
+                explanation: "An `inline-block` element behaves like an inline element (it doesn't force a new line) but allows you to set `width`, `height`, `margin-top`, and `margin-bottom` properties, unlike a regular `inline` element.",
+                type: "single-choice",
+                difficulty: "medium",
+                module: "CSS",
+                tip: "It's a hybrid of inline and block!"
+            },
+            {
+                question: "Fill in the blank: To apply styles when a user hovers over an element, you use the `__` pseudo-class.",
+                options: [],
+                correct: ":hover",
+                explanation: "The `:hover` pseudo-class is used to select elements when the user's mouse pointer is over them. It's commonly used to create interactive visual feedback.",
+                type: "fill-in-blank",
+                difficulty: "medium",
+                module: "CSS",
+                tip: "Think about the mouse 'hovering'!"
+            },
+            {
+                question: "Which of these CSS properties can be used to create a gradient background? (Select all that apply)",
+                options: ["background-color", "gradient-color", "linear-gradient()", "radial-gradient()"],
+                correct: [2, 3],
+                explanation: "The `linear-gradient()` and `radial-gradient()` functions are used with the `background-image` property to create gradient backgrounds. `background-color` sets a solid color.",
+                type: "multi-choice",
+                difficulty: "medium",
+                module: "CSS",
+                tip: "Gradients are images, not just colors!"
+            },
+
+            // HTML Hard
+            {
+                question: "What is the primary purpose of the `sandbox` attribute in an `<iframe>` tag?",
+                options: ["To define the iframe's border style", "To allow full access to the parent document", "To enable a set of extra restrictions on the content within the iframe for security", "To specify the default language of the iframe content"],
+                correct: 2,
+                explanation: "The `sandbox` attribute is a critical security feature for iframes. It enables various restrictions on the content loaded within the iframe, such as preventing script execution, form submission, or pop-ups, to mitigate potential security risks from untrusted content.",
+                type: "single-choice",
+                difficulty: "hard",
+                module: "HTML",
+                tip: "Think of it as a 'sandbox' for children to play safely."
+            },
+            {
+                question: "Which HTML5 attribute allows you to store custom data privately on an HTML element, accessible via JavaScript's `dataset` property?",
+                options: ["custom-data", "data-attribute", "data-*", "js-data"],
+                correct: 2,
+                explanation: "HTML5 introduced `data-*` attributes (e.g., `data-product-id`, `data-category`) for storing custom data. This data can then be accessed and manipulated using JavaScript's `element.dataset` property (e.g., `element.dataset.productId`).",
+                type: "single-choice",
+                difficulty: "hard",
+                module: "HTML",
+                tip: "It's all about 'data'!"
+            },
+            {
+                question: "Fill in the blank: To embed a video directly into an HTML document without plugins, you use the `__` tag.",
+                options: [],
+                correct: "video",
+                explanation: "The `<video>` tag is an HTML5 element that provides native support for embedding video content directly into a web page. It often uses `<source>` tags to specify multiple video formats for browser compatibility.",
+                type: "fill-in-blank",
+                difficulty: "hard",
+                module: "HTML",
+                tip: "It's as simple as the word 'video'!"
+            },
+
+            // CSS Hard
+            {
+                question: "Which CSS property is used to control the stacking order of overlapping elements, but only works on elements with a `position` value other than `static`?",
+                options: ["order", "float", "z-index", "display"],
+                correct: 2,
+                explanation: "The `z-index` property controls the vertical stacking order of positioned elements. Elements with a higher `z-index` value appear on top of elements with lower values. It has no effect on elements with `position: static` (the default).",
+                type: "single-choice",
+                difficulty: "hard",
+                module: "CSS",
+                tip: "Think of it as the 'Z-axis' for depth."
+            },
+            {
+                question: "Which CSS layout module is designed for one-dimensional content flow (either a row or a column)?",
+                options: ["CSS Grid", "Floats", "Flexbox", "Tables"],
+                correct: 2,
+                explanation: "Flexbox (Flexible Box Module) is a one-dimensional layout system, meaning it can arrange items in a single row or a single column. CSS Grid is for two-dimensional layouts (rows and columns simultaneously).",
+                type: "single-choice",
+                difficulty: "hard",
+                module: "CSS",
+                tip: "Flexbox is for 'flexing' in one direction!"
+            },
+            {
+                question: "Fill in the blank: The `__` CSS unit is relative to the font-size of the root `&lt;html&gt;` element.",
+                options: [],
+                correct: "rem",
+                explanation: "The `rem` (root em) unit is relative to the font-size of the document's root element (`<html>`). This makes it very useful for consistent and scalable typography across a responsive website, as it avoids the compounding issues of `em` units.",
+                type: "fill-in-blank",
+                difficulty: "hard",
+                module: "CSS",
+                tip: "Remember 'R' for Root!"
+            },
+            {
+                question: "Which of these CSS properties can be used to apply a visual filter to an element? (Select all that apply)",
+                options: ["opacity", "brightness()", "blur()", "transform"],
+                correct: [1, 2],
+                explanation: "The `filter` CSS property applies graphical effects like `blur()`, `brightness()`, `contrast()`, `grayscale()`, etc., to an element. `opacity` changes transparency, and `transform` applies 2D/3D transformations.",
+                type: "multi-choice",
+                difficulty: "hard",
+                module: "CSS",
+                tip: "Think about photo editing software filters!"
+            }
+        ];
+
+        let currentQuizData = []; // Filtered questions based on difficulty
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOptions = []; // Changed to array for multi-choice
+        let timer;
+        const TIME_PER_QUESTION = 15; // seconds
+
+        const difficultySelectionScreen = document.getElementById('difficulty-selection');
+        const difficultyButtons = document.getElementById('difficulty-buttons');
+        const quizArea = document.getElementById('quiz-area');
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const submitButton = document.getElementById('submit-button');
+        const nextButton = document.getElementById('next-button');
+        const feedbackElement = document.getElementById('feedback');
+        const explanationElement = document.getElementById('explanation');
+        const tipDisplayElement = document.getElementById('tip-display'); // New element for tips
+        const quizResultElement = document.getElementById('quiz-result');
+        const restartButton = document.getElementById('restart-button');
+        const timeLeftElement = document.getElementById('time-left');
+        const currentScoreDisplay = document.getElementById('current-score');
+
+        // Function to start the countdown timer
+        function startTimer() {
+            let timeLeft = TIME_PER_QUESTION;
+            timeLeftElement.textContent = timeLeft;
+            timeLeftElement.classList.remove('low-time'); // Ensure red color is removed
+            timer = setInterval(() => {
+                timeLeft--;
+                timeLeftElement.textContent = timeLeft;
+                if (timeLeft <= 5) {
+                    timeLeftElement.classList.add('low-time'); // Add class for red color
+                }
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    feedbackElement.textContent = "Time's up! ⏰";
+                    feedbackElement.classList.add('incorrect-feedback');
+                    // Automatically mark as incorrect if time runs out
+                    checkAnswer(true); // Pass true to indicate time ran out
+                }
+            }, 1000);
+        }
+
+        // Function to stop the timer
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        // Function to load a question
+        function loadQuestion() {
+            stopTimer();
+            feedbackElement.textContent = '';
+            feedbackElement.className = 'quiz-feedback';
+            explanationElement.textContent = '';
+            explanationElement.style.display = 'none';
+            tipDisplayElement.textContent = '';
+            tipDisplayElement.style.display = 'none';
+            optionsElement.innerHTML = '';
+            submitButton.style.display = 'block';
+            nextButton.style.display = 'none';
+            selectedOptions = []; // Reset selected options for new question
+            currentScoreDisplay.textContent = score;
+
+            if (currentQuestionIndex < currentQuizData.length) {
+                const currentQuestion = currentQuizData[currentQuestionIndex];
+                questionElement.textContent = `Question ${currentQuestionIndex + 1}/${currentQuizData.length}: ${currentQuestion.question}`;
+
+                if (currentQuestion.tip) {
+                    tipDisplayElement.textContent = `💡 Tip: ${currentQuestion.tip}`;
+                    tipDisplayElement.style.display = 'block';
+                }
+
+                if (currentQuestion.type === "single-choice" || currentQuestion.type === "multi-choice") {
+                    currentQuestion.options.forEach((option, index) => {
+                        const li = document.createElement('li');
+                        const input = document.createElement('input');
+                        input.type = currentQuestion.type === "single-choice" ? 'radio' : 'checkbox';
+                        input.name = 'quiz-option';
+                        input.value = index;
+                        input.id = `option${index}`;
+
+                        const label = document.createElement('label');
+                        label.htmlFor = `option${index}`;
+                        label.textContent = option;
+
+                        li.appendChild(input);
+                        li.appendChild(label);
+                        optionsElement.appendChild(li);
+
+                        // Add event listener to each list item for selection
+                        li.addEventListener('click', () => {
+                            if (currentQuestion.type === "single-choice") {
+                                const prevSelected = optionsElement.querySelector('input[name="quiz-option"]:checked');
+                                if (prevSelected && prevSelected !== input) {
+                                    prevSelected.checked = false;
+                                }
+                                input.checked = true;
+                                selectedOptions = [index]; // Store as array for consistency
+                            } else { // Multi-choice
+                                input.checked = !input.checked; // Toggle checkbox state
+                                selectedOptions = Array.from(optionsElement.querySelectorAll('input[type="checkbox"]:checked')).map(cb => parseInt(cb.value));
+                            }
+                        });
+                    });
+                } else if (currentQuestion.type === "fill-in-blank") {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = 'fill-in-blank-input';
+                    input.placeholder = "Type your answer here...";
+                    optionsElement.appendChild(input);
+                    // Add event listener for enter key
+                    input.addEventListener('keypress', (event) => {
+                        if (event.key === 'Enter') {
+                            submitButton.click();
+                        }
+                    });
+                }
+
+                startTimer();
+            } else {
+                showResult();
+            }
+        }
+
+        // Function to check the answer
+        function checkAnswer(timeExpired = false) {
+            stopTimer();
+
+            const currentQuestion = currentQuizData[currentQuestionIndex];
+            let isCorrect = false;
+            let userAnswer = null;
+
+            if (currentQuestion.type === "single-choice") {
+                userAnswer = selectedOptions[0]; // Get the single selected index
+                if (userAnswer === undefined && !timeExpired) { // If no option selected and not time expired
+                    feedbackElement.textContent = "Please select an answer!";
+                    feedbackElement.classList.add('incorrect-feedback');
+                    startTimer(); // Restart timer if no answer selected
+                    return;
+                }
+                isCorrect = (userAnswer === currentQuestion.correct);
+            } else if (currentQuestion.type === "multi-choice") {
+                userAnswer = selectedOptions.sort(); // Sort to compare arrays
+                const correctAnswersSorted = currentQuestion.correct.sort();
+                if (userAnswer.length === 0 && !timeExpired) {
+                    feedbackElement.textContent = "Please select at least one answer!";
+                    feedbackElement.classList.add('incorrect-feedback');
+                    startTimer();
+                    return;
+                }
+                isCorrect = (userAnswer.length === correctAnswersSorted.length &&
+                             userAnswer.every((val, index) => val === correctAnswersSorted[index]));
+            } else if (currentQuestion.type === "fill-in-blank") {
+                const fillInput = document.getElementById('fill-in-blank-input');
+                userAnswer = fillInput ? fillInput.value.trim() : '';
+                if (userAnswer === '' && !timeExpired) {
+                    feedbackElement.textContent = "Please type your answer!";
+                    feedbackElement.classList.add('incorrect-feedback');
+                    startTimer();
+                    return;
+                }
+                // Case-insensitive comparison for fill-in-the-blank
+                isCorrect = (userAnswer.toLowerCase() === currentQuestion.correct.toLowerCase());
+            }
+
+            // Disable all options/input after submission
+            Array.from(optionsElement.children).forEach(el => {
+                if (el.tagName === 'LI') {
+                    el.classList.add('disabled');
+                    el.style.pointerEvents = 'none';
+                } else if (el.tagName === 'INPUT' && el.type === 'text') {
+                    el.disabled = true;
+                }
+            });
+
+            if (isCorrect) {
+                score++;
+                feedbackElement.textContent = "Correct! 🎉 You earned a point!";
+                feedbackElement.classList.add('correct-feedback');
+                // Highlight correct options for MC/Multi-MC
+                if (currentQuestion.type === "single-choice" || currentQuestion.type === "multi-choice") {
+                    if (userAnswer !== undefined && userAnswer !== null) {
+                        const correctIndices = Array.isArray(currentQuestion.correct) ? currentQuestion.correct : [currentQuestion.correct];
+                        correctIndices.forEach(idx => {
+                            optionsElement.children[idx].classList.add('correct');
+                        });
+                    }
+                }
+            } else {
+                if (!timeExpired) {
+                    feedbackElement.textContent = "Incorrect. 😔";
+                    // Apply shake effect to selected incorrect option for single/multi-choice
+                    if (currentQuestion.type === "single-choice" && selectedOptions.length > 0) {
+                        optionsElement.children[selectedOptions[0]].classList.add('selected-incorrect');
+                    } else if (currentQuestion.type === "multi-choice" && selectedOptions.length > 0) {
+                        selectedOptions.forEach(idx => {
+                            if (!currentQuestion.correct.includes(idx)) { // Only shake truly incorrect ones
+                                optionsElement.children[idx].classList.add('selected-incorrect');
+                            }
+                        });
+                    }
+                } else {
+                    feedbackElement.textContent = "Time's up! ⏰ Incorrect. 😔";
+                }
+                feedbackElement.classList.add('incorrect-feedback');
+
+                // Highlight correct answer for all types
+                if (currentQuestion.type === "single-choice" || currentQuestion.type === "multi-choice") {
+                    const correctIndices = Array.isArray(currentQuestion.correct) ? currentQuestion.correct : [currentQuestion.correct];
+                    correctIndices.forEach(idx => {
+                        optionsElement.children[idx].classList.add('correct');
+                    });
+                } else if (currentQuestion.type === "fill-in-blank") {
+                    // For fill-in-the-blank, display the correct answer in the explanation
+                    // The input field itself can't be 'highlighted' as correct in the same way
+                }
+            }
+
+            currentScoreDisplay.textContent = score;
+
+            // Show explanation
+            explanationElement.textContent = currentQuestion.explanation;
+            explanationElement.style.display = 'block';
+
+            submitButton.style.display = 'none';
+            nextButton.style.display = 'block';
+        }
+
+        // Function to show final result
+        function showResult() {
+            stopTimer();
+            quizArea.style.display = 'none';
+            quizResultElement.textContent = `Quiz Complete! You scored ${score} out of ${currentQuizData.length} points!`;
+            quizResultElement.style.display = 'block';
+            restartButton.style.display = 'block';
+        }
+
+        // Event Listeners for difficulty selection
+        difficultyButtons.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                const difficulty = event.target.dataset.difficulty;
+                if (difficulty === 'all') {
+                    currentQuizData = [...allQuizData]; // Use all questions
+                } else {
+                    currentQuizData = allQuizData.filter(q => q.difficulty === difficulty);
+                }
+                // Shuffle questions for variety
+                currentQuizData.sort(() => Math.random() - 0.5);
+
+                difficultySelectionScreen.style.display = 'none';
+                quizArea.style.display = 'block';
+                currentQuestionIndex = 0;
+                score = 0;
+                loadQuestion();
+            }
+        });
+
+        // Event Listeners for quiz navigation
+        submitButton.addEventListener('click', () => checkAnswer(false));
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            loadQuestion();
+        });
+        restartButton.addEventListener('click', () => {
+            currentQuestionIndex = 0;
+            score = 0;
+            quizResultElement.style.display = 'none';
+            restartButton.style.display = 'none';
+            difficultySelectionScreen.style.display = 'block'; // Go back to difficulty selection
+            quizArea.style.display = 'none'; // Hide quiz area
+        });
+
+        // Initial setup - show difficulty selection
+        document.addEventListener('DOMContentLoaded', () => {
+            difficultySelectionScreen.style.display = 'block';
+            quizArea.style.display = 'none';
+            quizResultElement.style.display = 'none';
+            restartButton.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
