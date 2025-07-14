@@ -114,7 +114,7 @@
     &lt;script&gt;console.log("Script loaded from head!");&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-                    <button class="try-it-btn" onclick="showExample('html-head-elements', '&lt;h1&gt;This content is in the body. The title is in the tab.&lt;/h1&gt;&lt;script&gt;console.log(&apos;Script loaded from head!&apos;);&lt;/script&gt;')">Try It Yourself</button>
+                    <button class="try-it-btn" onclick="showExample('html-head-elements', '&lt;h1&gt;This content is in the body. The title is in the tab.&lt;/h1&gt;&lt;script&gt;console.log(\'Script loaded from head!\');&lt;/script&gt;')">Try It Yourself</button>
                     <iframe id="html-head-elements-iframe" class="code-output-iframe"></iframe>
                 </div>
             </div>
@@ -302,7 +302,7 @@ function greet() {
     &lt;/thead&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
-            &lt;td&gt;January&lt;/td&gt;
+            &lt;td&gt;January&lt;/td&gt>
             &lt;td&gt;15000&lt;/td&gt;
             &lt;td&gt;5000&lt;/td&gt;
         &lt;/tr&gt;
@@ -550,7 +550,6 @@ function greet() {
                     <li>`autoplay`, `loop`, `muted`: Similar to video.</li>
                 </ul>
                 <div class="code-example">
-                    <h4>Video Example:</h4>
                     <pre><code class="language-html">&lt;h4&gt;Sample Video&lt;/h4&gt;
 &lt;video width="320" height="240" controls poster="https://placehold.co/320x240/003049/FFFFFF?text=Video+Poster"&gt;
     &lt;source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"&gt;
@@ -611,7 +610,7 @@ function greet() {
 &lt;iframe srcdoc="&lt;h2&gt;Hello from an iframe!&lt;/h2&gt;&lt;p&gt;This content is sandboxed.&lt;/p&gt;&lt;button onclick=&quot;alert(&apos;Hello!&apos;);&quot;&gt;Click Me (Alert blocked)&lt;/button&gt;"
         width="400" height="150" title="Sandboxed Example" sandbox="allow-same-origin allow-scripts"&gt;&lt;/iframe&gt;
 &lt;p&gt;Note: The alert might be blocked by the sandbox attribute depending on the browser's security policies.&lt;/p&gt;</code></pre>
-                    <button class="try-it-btn" onclick="showExample('html-iframes', '&lt;h4&gt;Embedding a Map (Google Maps Example)&lt;/h4&gt;&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.250567086884!2d144.963137515319!3d-37.81410797975173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7a0!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1678901234567!5m2!1sen!2sau&quot; width=&quot;400&quot; height=&quot;300&quot; style=&quot;border:0;&quot; allowfullscreen=&quot;&quot; loading=&quot;lazy&quot; title=&quot;Federation Square Map&quot;&gt;&lt;/iframe&gt;&lt;br&gt;&lt;h4&gt;Embedding a YouTube Video&lt;/h4&gt;&lt;iframe width=&quot;300&quot; height=&quot;200&quot; src=&quot;https://www.youtube.com/embed/dQw4w9WgXcQ&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;br&gt;&lt;h4&gt;Embedding a Simple HTML Page (with Sandbox for security)&lt;/h4&gt;&lt;iframe srcdoc=&quot;&lt;h2&gt;Hello from an iframe!&lt;/h2&gt;&lt;p&gt;This content is sandboxed.&lt;/p&gt;&lt;button onclick=&amp;quot;alert(&apos;Hello!&apos;);&amp;quot;&gt;Click Me (Alert blocked)&lt;/button&gt;&quot; width=&quot;300&quot; height=&quot;120&quot; title=&quot;Sandboxed Example&quot; sandbox=&quot;allow-same-origin allow-scripts&quot;&gt;&lt;/iframe&gt;')">Try It Yourself</button>
+                    <button class="try-it-btn" onclick="showExample('html-iframes', '&lt;h4&gt;Embedding a Map (Google Maps Example)&lt;/h4&gt;&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.250567086884!2d144.963137515319!3d-37.81410797975173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7a0!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1678901234567!5m2!1sen!2sau&quot; width=&quot;400&quot; height=&quot;300&quot; style=&quot;border:0;&quot; allowfullscreen=&quot;&quot; loading=&quot;lazy&quot; title=&quot;Federation Square Map&quot;&gt;&lt;/iframe&gt;&lt;br&gt;&lt;h4&gt;Embedding a YouTube Video&lt;/h4&gt;&lt;iframe width=&quot;300&quot; height=&quot;200&quot; src=&quot;https://www.youtube.com/embed/dQw4w9WgXcQ&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;br&gt;&lt;h4&gt;Embedding a Simple HTML Page (with Sandbox for security)&lt;/h4&gt;&lt;iframe srcdoc=&quot;&lt;h2&gt;Hello from an iframe!&lt;/h2&gt;&lt;p&gt;This content is sandboxed.&lt;/p&gt;&lt;button onclick=&quot;alert(\'Hello!\');&quot;&gt;Click Me (Alert blocked)&lt;/button&gt;&quot; width=&quot;300&quot; height=&quot;120&quot; title=&quot;Sandboxed Example&quot; sandbox=&quot;allow-same-origin allow-scripts&quot;&gt;&lt;/iframe&gt;')">Try It Yourself</button>
                     <iframe id="html-iframes-iframe" class="code-output-iframe"></iframe>
                 </div>
             </div>
@@ -684,7 +683,7 @@ function greet() {
     #theme-toggle { padding: 10px 15px; background-color: #eee; border: 1px solid #ccc; cursor: pointer; }
     #theme-toggle[aria-checked="true"] { background-color: #005f73; color: white; }
 &lt;/style&gt;</code></pre>
-                    <button class="try-it-btn" onclick="showExample('html-accessibility', '&lt;h4&gt;Accessible Image&lt;/h4&gt;&lt;img src=&quot;https://placehold.co/200x150/0a9396/FFFFFF?text=Accessible+Image&quot; alt=&quot;A serene landscape with mountains and a lake at sunset.&quot;&gt;&lt;h4&gt;Accessible Form Input&lt;/h4&gt;&lt;label for=&quot;username_a11y_ex&quot;&gt;Username:&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;username_a11y_ex&quot; name=&quot;username_a11y_ex&quot; aria-describedby=&quot;username-hint-ex&quot;&gt;&lt;p id=&quot;username-hint-ex&quot;&gt;Your username must be unique.&lt;/p&gt;&lt;h4&gt;ARIA Example (Custom Toggle Button)&lt;/h4&gt;&lt;button role=&quot;switch&quot; aria-checked=&quot;false&quot; id=&quot;theme-toggle-ex&quot;&gt;Toggle Dark Mode&lt;/button&gt;&lt;script&gt;document.getElementById(&apos;theme-toggle-ex&apos;).addEventListener(&apos;click&apos;, function() { const isChecked = this.getAttribute(&apos;aria-checked&apos;) === &apos;true&apos;; this.setAttribute(&apos;aria-checked&apos;, !isChecked); console.log(&apos;Dark mode toggled: &apos; + !isChecked); });&lt;/script&gt;&lt;style&gt;#theme-toggle-ex { padding: 10px 15px; background-color: #eee; border: 1px solid #ccc; cursor: pointer; } #theme-toggle-ex[aria-checked=&quot;true&quot;] { background-color: #005f73; color: white; }&lt;/style&gt;')">Try It Yourself</button>
+                    <button class="try-it-btn" onclick="showExample('html-accessibility', '&lt;h4&gt;Accessible Image&lt;/h4&gt;&lt;img src=&quot;https://placehold.co/200x150/0a9396/FFFFFF?text=Accessible+Image&quot; alt=&quot;A serene landscape with mountains and a lake at sunset.&quot;&gt;&lt;h4&gt;Accessible Form Input&lt;/h4&gt;&lt;label for=&quot;username_a11y_ex&quot;&gt;Username:&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;username_a11y_ex&quot; name=&quot;username_a11y_ex&quot; aria-describedby=&quot;username-hint-ex&quot;&gt;&lt;p id=&quot;username-hint-ex&quot;&gt;Your username must be unique.&lt;/p&gt;&lt;h4&gt;ARIA Example (Custom Toggle Button)&lt;/h4&gt;&lt;button role=&quot;switch&quot; aria-checked=&quot;false&quot; id=&quot;theme-toggle-ex&quot;&gt;Toggle Dark Mode&lt;/button&gt;&lt;script&gt;document.getElementById(\'theme-toggle-ex\').addEventListener(\'click\', function() { const isChecked = this.getAttribute(\'aria-checked\') === \'true\'; this.setAttribute(\'aria-checked\', !isChecked); console.log(\'Dark mode toggled: \' + !isChecked); });&lt;/script&gt;&lt;style&gt;#theme-toggle-ex { padding: 10px 15px; background-color: #eee; border: 1px solid #ccc; cursor: pointer; } #theme-toggle-ex[aria-checked=&quot;true&quot;] { background-color: #005f73; color: white; }&lt;/style&gt;')">Try It Yourself</button>
                     <iframe id="html-accessibility-iframe" class="code-output-iframe"></iframe>
                 </div>
             </div>
@@ -798,7 +797,7 @@ function greet() {
         output.innerHTML = info;
     }
 &lt;/script&gt;</code></pre>
-                    <button class="try-it-btn" onclick="showExample('html-data-attributes', '&lt;style&gt;ul{list-style:none; padding:0;} li{background:#f0f0f0; margin-bottom:5px; padding:8px; border-radius:4px;}&lt;/style&gt;&lt;h4&gt;Product List with Data Attributes&lt;/h4&gt;&lt;ul id=&quot;product-list-ex&quot;&gt;&lt;li data-product-id=&quot;101&quot; data-category=&quot;electronics&quot; data-price=&quot;499.99&quot;&gt;Laptop Pro (ID: 101)&lt;/li&gt;&lt;li data-product-id=&quot;102&quot; data-category=&quot;books&quot; data-price=&quot;25.50&quot;&gt;HTML Master Guide (ID: 102)&lt;/li&gt;&lt;/ul&gt;&lt;button onclick=&quot;showProductInfoEx()&quot;&gt;Show Product Info (JS)&lt;/button&gt;&lt;p id=&quot;product-info-output-ex&quot;&gt;&lt;/p&gt;&lt;script&gt;function showProductInfoEx() { const productList = document.getElementById(&apos;product-list-ex&apos;); const output = document.getElementById(&apos;product-info-output-ex&apos;); let info = &apos;&apos;; productList.querySelectorAll(&apos;li&apos;).forEach(item =&gt; { const id = item.dataset.productId; const category = item.dataset.category; const price = item.dataset.price; info += &apos;Product ID: &apos; + id + &apos;, Category: &apos; + category + &apos;, Price: $&apos; + price + &apos;&lt;br&gt;&apos;; }); output.innerHTML = info; }&lt;/script&gt;')">Try It Yourself</button>
+                    <button class="try-it-btn" onclick="showExample('html-data-attributes', '&lt;style&gt;ul{list-style:none; padding:0;} li{background:#f0f0f0; margin-bottom:5px; padding:8px; border-radius:4px;}&lt;/style&gt;&lt;h4&gt;Product List with Data Attributes&lt;/h4&gt;&lt;ul id=&quot;product-list-ex&quot;&gt;&lt;li data-product-id=&quot;101&quot; data-category=&quot;electronics&quot; data-price=&quot;499.99&quot;&gt;Laptop Pro (ID: 101)&lt;/li&gt;&lt;li data-product-id=&quot;102&quot; data-category=&quot;books&quot; data-price=&quot;25.50&quot;&gt;HTML Master Guide (ID: 102)&lt;/li&gt;&lt;/ul&gt;&lt;button onclick=&quot;showProductInfoEx()&quot;&gt;Show Product Info (JS)&lt;/button&gt;&lt;p id=&quot;product-info-output-ex&quot;&gt;&lt;/p&gt;&lt;script&gt;function showProductInfoEx() { const productList = document.getElementById(\'product-list-ex\'); const output = document.getElementById(\'product-info-output-ex\'); let info = \'\'; productList.querySelectorAll(\'li\').forEach(item =&gt; { const id = item.dataset.productId; const category = item.dataset.category; const price = item.dataset.price; info += \'Product ID: \' + id + \', Category: \' + category + \', Price: $\' + price + \'&lt;br&gt;\'; }); output.innerHTML = info; }&lt;/script&gt;')">Try It Yourself</button>
                     <iframe id="html-data-attributes-iframe" class="code-output-iframe"></iframe>
                 </div>
             </div>
@@ -818,5 +817,6 @@ function greet() {
     <script src="js/script.js"></script>
 </body>
 </html>
+
 
 
