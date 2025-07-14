@@ -1,5 +1,8 @@
 // Function to display code examples in an iframe using Blob URLs for better compatibility
 function showExample(iframeIdPrefix, codeContent) {
+    console.log('showExample called for:', iframeIdPrefix);
+    console.log('Code content length:', codeContent.length);
+
     const iframeId = iframeIdPrefix + '-iframe';
     const iframe = document.getElementById(iframeId);
 
@@ -11,12 +14,14 @@ function showExample(iframeIdPrefix, codeContent) {
     // Revoke any existing object URL to prevent memory leaks if content is being updated
     if (iframe.src && iframe.src.startsWith('blob:')) {
         URL.revokeObjectURL(iframe.src);
+        console.log('Revoked old Blob URL for', iframeIdPrefix);
     }
 
     // Toggle display: if already visible, hide it and clear content; otherwise, show it
     if (iframe.style.display === 'block') {
         iframe.style.display = 'none';
-        iframe.src = ''; // Clear src to stop content
+        iframe.src = 'about:blank'; // Clear src to stop content and release resources
+        console.log('Hiding iframe for', iframeIdPrefix);
     } else {
         // Wrap the codeContent in a full HTML document structure
         // This ensures proper rendering, especially for CSS examples, and provides a base for the iframe
@@ -34,6 +39,7 @@ function showExample(iframeIdPrefix, codeContent) {
                         margin: 10px;
                         background-color: #fff;
                         color: #333;
+                        font-size: 14px; /* Default font size for iframe content */
                     }
                     table, th, td {
                         border: 1px solid #ddd;
@@ -64,9 +70,47 @@ function showExample(iframeIdPrefix, codeContent) {
                         border-radius: 5px;
                         cursor: pointer;
                         font-size: 1rem;
+                        margin-top: 5px; /* Add some margin for buttons */
                     }
                     input[type="submit"]:hover, button:hover {
                         background-color: #007a82;
+                    }
+                    /* Specific styles for HTML course examples */
+                    .box-model-example {
+                        width: 150px;
+                        height: 70px;
+                        background-color: #a7d9de;
+                        padding: 10px;
+                        border: 3px solid #0a9396;
+                        margin: 15px;
+                        box-sizing: border-box;
+                        text-align: center;
+                        line-height: 70px;
+                        font-weight: bold;
+                        color: #003049;
+                    }
+                    .inline-block-example {
+                        background-color: #005f73;
+                        color: white;
+                        padding: 10px;
+                        margin: 8px;
+                        width: 100px;
+                        height: 50px;
+                        display: inline-block;
+                        text-align: center;
+                        line-height: 30px;
+                    }
+                    .responsive-box {
+                        width: 90%;
+                        padding: 15px;
+                        margin: 10px auto;
+                        background-color: #a7d9de;
+                        text-align: center;
+                        font-size: 1em;
+                        border: 1px solid #0a9396;
+                    }
+                    @media (max-width: 600px) {
+                        .responsive-box { background-color: #ffc300; }
                     }
                 </style>
             </head>
@@ -77,22 +121,24 @@ function showExample(iframeIdPrefix, codeContent) {
         `;
 
         // Create a Blob from the HTML string
-        // The type 'text/html' tells the browser it's an HTML document
         const blob = new Blob([fullHtmlContent], { type: 'text/html' });
 
         // Create an object URL for the Blob
-        // This URL can be used as the src for the iframe
         const objectURL = URL.createObjectURL(blob);
 
         // Set the iframe's src to the Blob URL
         iframe.src = objectURL;
         iframe.style.display = 'block'; // Show the iframe
+        console.log('Loading Blob URL for', iframeIdPrefix);
 
         // Optional: Add an onload event to revoke the URL once the iframe has loaded
-        // This helps with memory management, though modern browsers are good at garbage collection
         iframe.onload = () => {
-            // URL.revokeObjectURL(objectURL); // Revoke after load if you don't need to keep it in memory
-            // However, for 'Try It Yourself' where the user might toggle, keeping it until hidden is better.
+            console.log('Iframe loaded for', iframeIdPrefix);
+            // You might revoke the URL here if you don't expect the user to toggle it
+            // URL.revokeObjectURL(objectURL);
+        };
+        iframe.onerror = () => {
+            console.error('Error loading iframe for', iframeIdPrefix);
         };
     }
 }
